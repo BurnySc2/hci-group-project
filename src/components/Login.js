@@ -34,21 +34,27 @@ export default class Login extends Component {
                         Register
                     </button>
                 </div>
-                <input
-                    className={LOGINCLASSES.inputBox}
-                    placeholder="Username"
-                    onChange={(e) => {
-                        this.setState({ username: e.target.value })
-                    }}
-                />
-                <input
-                    className={LOGINCLASSES.inputBox}
-                    placeholder="Password"
-                    type="password"
-                    onChange={(e) => {
-                        this.setState({ password: e.target.value })
-                    }}
-                />
+                <div className={LOGINCLASSES.row}>
+                    <div className={LOGINCLASSES.label}>Username</div>
+                    <input
+                        className={LOGINCLASSES.inputBox}
+                        placeholder="Username"
+                        onChange={(e) => {
+                            this.setState({ username: e.target.value })
+                        }}
+                    />
+                </div>
+                <div className={LOGINCLASSES.row}>
+                    <div className={LOGINCLASSES.label}>Password</div>
+                    <input
+                        className={LOGINCLASSES.inputBox}
+                        placeholder="Password"
+                        type="password"
+                        onChange={(e) => {
+                            this.setState({ password: e.target.value })
+                        }}
+                    />
+                </div>
                 <button
                     className={LOGINCLASSES.button}
                     onClick={() => {

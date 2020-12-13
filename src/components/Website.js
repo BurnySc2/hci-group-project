@@ -3,6 +3,9 @@ import Groupfinder from "./Groupfinder"
 import Login from "./Login"
 import Register from "./Register"
 import Title from "./Title"
+import Social from "./Social"
+import GroupCreate from "./GroupCreate"
+import StudyProjectCreate from "./StudyProjectCreate"
 
 export default class Website extends Component {
     constructor(props) {
@@ -12,7 +15,9 @@ export default class Website extends Component {
             loggedIn: null,
             // Which screen to show
             // One of: login, register, home, groupfinder, profile, contacts
-            show: "login",
+            // groupcreate, studyprojectcreate
+            show: "studyprojectcreate",
+            // show: "login",
         }
     }
 
@@ -45,8 +50,13 @@ export default class Website extends Component {
                 />
             )
         } else if (this.state.show === "home") {
+            subpage = <Social />
         } else if (this.state.show === "groupfinder") {
             subpage = <Groupfinder />
+        } else if (this.state.show === "groupcreate") {
+            subpage = <GroupCreate />
+        } else if (this.state.show === "studyprojectcreate") {
+            subpage = <StudyProjectCreate />
         } else if (this.state.show === "profile") {
         } else if (this.state.show === "contacts") {
         }
@@ -55,6 +65,7 @@ export default class Website extends Component {
             <div className="flex flex-col">
                 <Title />
                 {subpage}
+                {/* TODO Footer */}
             </div>
         )
     }
