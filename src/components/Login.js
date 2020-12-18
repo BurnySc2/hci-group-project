@@ -14,10 +14,10 @@ export default class Login extends Component {
     }
 
     loginButton = () => {
-        console.log("hewwoww")
         this.setState({
             loginText: `You have clicked the 'login' button! No functionality is implemented yet :(`,
         })
+        this.props.login(this.state.username, this.state.password)
     }
 
     render() {

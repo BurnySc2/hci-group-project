@@ -26,6 +26,17 @@ export default class Register extends Component {
         this.setState({
             registerText: text,
         })
+
+        console.assert(
+            this.state.password === this.state.passwordRepeat,
+            "Password and password repeat are not the same!"
+        )
+
+        this.props.register(
+            this.state.username,
+            this.state.email,
+            this.state.password
+        )
     }
 
     render() {

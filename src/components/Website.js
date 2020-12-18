@@ -3,9 +3,9 @@ import Groupfinder from "./Groupfinder"
 import Login from "./Login"
 import Register from "./Register"
 import Title from "./Title"
-import Social from "./Social"
 import GroupCreate from "./GroupCreate"
 import StudyProjectCreate from "./StudyProjectCreate"
+import LoggedIn from "./LoggedIn"
 
 export default class Website extends Component {
     constructor(props) {
@@ -16,7 +16,7 @@ export default class Website extends Component {
             // Which screen to show
             // One of: login, register, home, groupfinder, profile, contacts
             // groupcreate, studyprojectcreate
-            show: "studyprojectcreate",
+            show: "home",
             // show: "login",
         }
     }
@@ -30,18 +30,30 @@ export default class Website extends Component {
     logIn = (username, password) => {
         // TODO verify if username and password are correct
         // if correct: redirect to home page and setState loggedIn = username
+        this.setState({
+            loggedIn: username,
+            show: "home"
+        })
     }
-
+    
     register = (username, email, password) => {
         // TODO verify that username and email are not in use?
         // add new user account to database
+        this.changeShow("login")
+    }
+    
+    logOutClick = () => {
+        this.setState({
+            loggedIn: null,
+            show: "login"
+        })
     }
 
     render() {
         // Which subpage to show
         let subpage = null
         if (this.state.show === "login") {
-            subpage = <Login changeShow={this.changeShow} login={this.login} />
+            subpage = <Login changeShow={this.changeShow} login={this.logIn} />
         } else if (this.state.show === "register") {
             subpage = (
                 <Register
@@ -50,7 +62,7 @@ export default class Website extends Component {
                 />
             )
         } else if (this.state.show === "home") {
-            subpage = <Social />
+            subpage = <LoggedIn logOutClick={this.logOutClick} />
         } else if (this.state.show === "groupfinder") {
             subpage = <Groupfinder />
         } else if (this.state.show === "groupcreate") {

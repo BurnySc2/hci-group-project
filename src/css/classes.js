@@ -38,3 +38,10 @@ export let STUDYPROJECTCREATE = {
     acceptButton: "m-2 p-2 border-2 border-black rounded hover:bg-green-400",
     cancelButton: "m-2 p-2 border-2 border-black rounded hover:bg-red-400",
 }
+
+export let NAVBAR = {
+    total: "flex flex-row content-evenly bg-gray-200 w-128",
+    leftSide: "flex flex-row bg-blue-100",
+    rightSide: "flex flex-row",
+    button: "px-4 py-2 mx-2 my-1 font-black",
+}
