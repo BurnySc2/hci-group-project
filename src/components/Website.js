@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import Groupfinder from "./Groupfinder"
 import Login from "./Login"
 import Register from "./Register"
 import Title from "./Title"
@@ -14,7 +13,7 @@ export default class Website extends Component {
         this.state = {
             loggedIn: null,
             // Which screen to show
-            // One of: login, register, home, groupfinder, profile, contacts
+            // One of: login, register, home, profile, contacts
             // groupcreate, studyprojectcreate
             show: "home",
             // show: "login",
@@ -63,8 +62,6 @@ export default class Website extends Component {
             )
         } else if (this.state.show === "home") {
             subpage = <LoggedIn logOutClick={this.logOutClick} />
-        } else if (this.state.show === "groupfinder") {
-            subpage = <Groupfinder />
         } else if (this.state.show === "groupcreate") {
             subpage = <GroupCreate />
         } else if (this.state.show === "studyprojectcreate") {
