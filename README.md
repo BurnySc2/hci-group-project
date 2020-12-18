@@ -100,6 +100,20 @@ In the cog menu the user can change his password, or remove his account.
 ### Global chat database
 - [ ] When a user sends a message in global chat, add it to the global chat database (limit to 100 messages?)
 
+# Development flow
+
+When starting to implement a new feature, clone / pull the repository (get it up to date).
+
+- Create a new branch with the feature name you are going to implement.
+- Switch to the new branch
+- Implement your changes
+- Commit
+- Push
+- On Github, use the `pull request` feature to merge your changes from the feature branch to `master` branch
+- Review the changes as a group, make necessary changes, and merge
+
+This way, the least amount of merge conflicts should appear while everyone can work `safely` on the project at the same time.
+
 # Installation (development)
 
 Install node
