@@ -120,9 +120,13 @@ Install node
 
 Clone (download) the repository
 
-Run:
+Install the requirements (node_modules folder)
 
 `npm install`
+
+Run development server - a website should open where you can see the result
+
+`npm run start`
 
 # Building
 
