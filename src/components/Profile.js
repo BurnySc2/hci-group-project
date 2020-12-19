@@ -13,6 +13,6 @@ export default class Profile extends Component {
     // pw aendern / vergessen
     // account loeschen
     render() {
-        return <div></div>
+        return <div>irgendwas</div>
     }
 }
