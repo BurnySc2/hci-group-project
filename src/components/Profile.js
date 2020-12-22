@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+ 
+var profilePic = require('C:/Users/Dominik Rittner/Desktop/Website/git/hci-group-project/src/BSP_PB.png');
 
 export default class Profile extends Component {
     // TODO able to upload profile picture
@@ -22,15 +24,22 @@ export default class Profile extends Component {
             "description":"Außerdem bin ich sehr engagiert.",
             "hobbies":"Meine Hobbys sind Fahrrad fahren und Kochen."
         }
+        //let profilePic = {}
         let mycss = "m-auto"
-        let containercss = "flex flex-col bg-gray-500"
+        let containercss = "flex flex-col bg-gray-500 m-20"
         return (
             <div className={containercss}>
+                <div className="one-fourth" id="html">
+                    <img src ={profilePic} />
+                </div>
+            
                 <div className={mycss}>Name: {profileInfo.name}</div>
                 <div className={mycss}>{profileInfo.degreecourse}, {profileInfo.semester}. Semester</div>
                 <div className={mycss}>Erreichbar unter: {profileInfo.connections}</div>
+                
+                {/*TODOZeilenumbruch einfügen*/}
                 <div className={mycss}>
-                    Ich belege dieses Semester folgende Module:{profileInfo.moduls}
+                    Ich belege dieses Semester folgende Module:}{profileInfo.moduls}
                 </div>
                 <div className={mycss}>{profileInfo.description}</div>
                 <div className={mycss}>{profileInfo.hobbies}</div>
