@@ -1,6 +1,6 @@
 import React, { Component } from "react"
- 
-var profilePic = require('C:/Users/Dominik Rittner/Desktop/Website/git/hci-group-project/src/BSP_PB.png');
+
+import profilePic from '../BSP_PB.png'
 
 export default class Profile extends Component {
     // TODO able to upload profile picture
@@ -30,7 +30,7 @@ export default class Profile extends Component {
         return (
             <div className={containercss}>
                 <div className="one-fourth" id="html">
-                    <img src ={profilePic} />
+                    <img src={profilePic} alt="Profile pic" />
                 </div>
             
                 <div className={mycss}>Name: {profileInfo.name}</div>
