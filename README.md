@@ -74,7 +74,7 @@ In the cog menu the user can change his password, or remove his account.
 - [ ] (difficult?) From given data, mark study projects in the calendar (@meet time, display the title), projects should only be in calendar after their start date, and before their deadline
 
 ## Profile
-- [ ] (simple) `Profile.js` Display a user avatar(?) and user information / description.
+- [x] (simple) `Profile.js` Display a user avatar(?) and user information / description.
 - [ ] (simple) `ProfileCog.js` display buttons: Profil bearbeiten, PW aendern, Account loeschen
 - [ ] (simple) `ProfileEdit.js` via input fields, allow the user to edit his information / description
 - [ ] (moderate) On `profil bearbeiten`, redirect the user to `ProfileEdit.js`
