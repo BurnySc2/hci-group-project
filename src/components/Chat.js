@@ -3,7 +3,7 @@ import ChatMessage from "./ChatMessage"
 const cloneDeep = require("clone-deep")
 
 export default function Chat(props) {
-    let [username, setUsername] = useState("Paul")
+    let username = useState("Paul")[0]
     let [chatMessages, setChatMessages] = useState([])
     let [newMessageText, setNewMessageText] = useState("")
 
