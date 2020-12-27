@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-import { LOGINCLASSES } from "../css/classes"
+import { LOGINCLASSES } from "../../css/classes"
 
 export default class Register extends Component {
     constructor(props) {
