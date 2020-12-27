@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { NAVBAR } from "../css/classes"
+import { NAVBAR } from "../../css/classes"
 
 export default class NavBar extends Component {
     constructor(props) {

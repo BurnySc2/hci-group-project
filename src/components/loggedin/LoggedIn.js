@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import NavBar from "./NavBar"
-import FilterFunction from "./FilterFunction"
+import FilterFunction from "../FilterFunction"
 
 export default class LoggedIn extends Component {
     constructor(props) {

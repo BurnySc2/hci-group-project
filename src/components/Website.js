@@ -1,10 +1,10 @@
 import React, { Component } from "react"
-import Login from "./Login"
-import Register from "./Register"
+import Login from "./loggedout/Login"
+import Register from "./loggedout/Register"
 import Title from "./Title"
 import GroupCreate from "./GroupCreate"
 import StudyProjectCreate from "./StudyProjectCreate"
-import LoggedIn from "./LoggedIn"
+import LoggedIn from "./loggedin/LoggedIn"
 
 export default class Website extends Component {
     constructor(props) {
@@ -31,20 +31,20 @@ export default class Website extends Component {
         // if correct: redirect to home page and setState loggedIn = username
         this.setState({
             loggedIn: username,
-            show: "home"
+            show: "home",
         })
     }
-    
+
     register = (username, email, password) => {
         // TODO verify that username and email are not in use?
         // add new user account to database
         this.changeShow("login")
     }
-    
+
     logOutClick = () => {
         this.setState({
             loggedIn: null,
-            show: "login"
+            show: "login",
         })
     }
 
