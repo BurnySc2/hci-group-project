@@ -1,7 +1,5 @@
-import React, { Component } from "react"
+import React from "react"
 
-export default class FilterFunction extends Component {
-    render() {
-        return <div>Filterzeug</div>
-    }
+export default function FilterFunction(props) {
+    return <div>Filterzeug</div>
 }

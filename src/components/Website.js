@@ -1,81 +1,54 @@
-import React, { Component } from "react"
+import React, { useState } from "react"
 import Login from "./loggedout/Login"
 import Register from "./loggedout/Register"
-import Title from "./Title"
+import LoggedIn from "./loggedin/LoggedIn"
 import GroupCreate from "./GroupCreate"
 import StudyProjectCreate from "./StudyProjectCreate"
-import LoggedIn from "./loggedin/LoggedIn"
+import Title from "./Title"
 
-export default class Website extends Component {
-    constructor(props) {
-        super(props)
+export default function Website(props) {
+    // eslint-disable-next-line
+    let [loggedIn, setLoggedIn] = useState("")
+    // eslint-disable-next-line
+    let [show, setShow] = useState("home")
 
-        this.state = {
-            loggedIn: null,
-            // Which screen to show
-            // One of: login, register, home, profile, contacts
-            // groupcreate, studyprojectcreate
-            show: "home",
-            // show: "login",
-        }
+    let login = (username, password) => {
+        // TODO verify username and password match
+        setLoggedIn(username)
+        setShow("home")
     }
 
-    changeShow = (newShow) => {
-        this.setState({
-            show: newShow,
-        })
-    }
-
-    logIn = (username, password) => {
-        // TODO verify if username and password are correct
-        // if correct: redirect to home page and setState loggedIn = username
-        this.setState({
-            loggedIn: username,
-            show: "home",
-        })
-    }
-
-    register = (username, email, password) => {
+    let register = (username, email, password) => {
         // TODO verify that username and email are not in use?
         // add new user account to database
-        this.changeShow("login")
+        setShow("login")
     }
 
-    logOutClick = () => {
-        this.setState({
-            loggedIn: null,
-            show: "login",
-        })
+    let logOutClick = () => {
+        setLoggedIn("")
+        setShow("login")
     }
 
-    render() {
-        // Which subpage to show
-        let subpage = null
-        if (this.state.show === "login") {
-            subpage = <Login changeShow={this.changeShow} login={this.logIn} />
-        } else if (this.state.show === "register") {
-            subpage = (
-                <Register
-                    changeShow={this.changeShow}
-                    register={this.register}
-                />
-            )
-        } else if (this.state.show === "home") {
-            subpage = <LoggedIn logOutClick={this.logOutClick} />
-        } else if (this.state.show === "groupcreate") {
-            subpage = <GroupCreate />
-        } else if (this.state.show === "studyprojectcreate") {
-            subpage = <StudyProjectCreate />
-        } else if (this.state.show === "profile") {
-        } else if (this.state.show === "contacts") {
-        }
-
-        return (
-            <div className="flex flex-col">
-                <Title />
-                {subpage}
-                {/* TODO Footer */}
-            </div>
-        )
+    // Which subpage to show
+    let subpage = null
+    if (show === "login") {
+        subpage = <Login setShow={setShow} login={login} />
+    } else if (show === "register") {
+        subpage = <Register setShow={setShow} register={register} />
+    } else if (show === "home") {
+        subpage = <LoggedIn logOutClick={logOutClick} />
+    } else if (show === "groupcreate") {
+        subpage = <GroupCreate />
+    } else if (show === "studyprojectcreate") {
+        subpage = <StudyProjectCreate />
+    } else if (show === "profile") {
+    } else if (show === "contacts") {
     }
+    return (
+        <div className="flex flex-col">
+            <Title />
+            {subpage}
+            {/* TODO Footer */}
+        </div>
+    )
 }
