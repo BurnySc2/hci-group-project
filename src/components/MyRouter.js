@@ -3,11 +3,11 @@ import { Route, Link, BrowserRouter as Router } from "react-router-dom"
 import Website from "./Website"
 import Login from "./loggedout/Login"
 import Register from "./loggedout/Register"
-import "../css/tailwind.css"
 import GroupCreate from "./GroupCreate"
 import StudyProjectCreate from "./StudyProjectCreate"
 import Chat from "./Chat"
 import Calendar from "./loggedin/calendar/Calendar"
+import "../css/tailwind.css"
 
 export default function MyRouter(props) {
     return (
