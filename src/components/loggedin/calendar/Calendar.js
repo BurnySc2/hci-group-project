@@ -1,8 +1,5 @@
-import React, { Component } from "react"
+import React from "react"
 
-export default class Calendar extends Component {
-    // list all subscribed study projects?
-    render() {
-        return <div></div>
-    }
+export default function Calendar(props) {
+    return <div></div>
 }
