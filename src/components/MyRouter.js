@@ -8,6 +8,7 @@ import GroupCreate from "./GroupCreate"
 import StudyProjectCreate from "./StudyProjectCreate"
 import Chat from "./Chat"
 import Calendar from "./loggedin/calendar/Calendar"
+import Profile from "./Profile";
 
 export default function MyRouter(props) {
     return (
@@ -51,7 +52,7 @@ export default function MyRouter(props) {
             <Route path="/joingrouprequest" component={Register} />
             <Route path="/calendarmonthview" component={Calendar} />
             <Route path="/calendarweekview" component={Calendar} />
-            <Route path="/myprofile" component={Register} />
+            <Route path="/myprofile" component={Profile} />
         </Router>
     )
 }
