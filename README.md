@@ -48,30 +48,30 @@ In the cog menu the user can change his password, or remove his account.
 
 ## Home screen
 - [X] (simple) Fix the navbar so that the logout button is in the top right
-- [ ] (simple) Add `GroupInfo.js` which displayed the study group information
-- [ ] (simple) Add `GroupJoinRequest.js` which displays a submit form to be able to request to join the group
+- [X] (simple) Add `GroupInfo.js` which displayed the study group information
+- [X] (simple) Add `GroupJoinRequest.js` which displays a submit form to be able to request to join the group
 - [ ] (moderate) Add interactivity to the `GroupInfo.js` buttons to get back to the filtered groups, and on `Anfrage senden` get to the `GroupJoinRequest.js` screen
 - [ ] (moderate) Connect functionality with `neue Gruppe erstellen` button
 - [ ] (simple) Create `FilterFunction.js` which contains input text fields
 - [ ] (moderate) Connect the filter functions with logic (e.g. when the filter text changes, also update the list of groups that match the criteria)
 
 ## Chat screen
-- [ ] (simple) On chat-home screen, list the study groups the user is in, together with the last chat message
+- [X] (simple) On chat-home screen, list the study groups the user is in, together with the last chat message
 - [ ] (simple) `GroupInfoJoined.js` Group information screen: list all the study projects (scrollbar on overflow), and add a button to create a new study project 
 - [ ] (simple) `StudyProjectInfo.js` display study project information. Allow the modification `StudyProjectEdit.js` and removal of the project
 - [ ] (simple) `GroupCog.js` Add group information that is displayed when the cog wheel is clicked
 - [ ] (moderate) Add a connection to `StudyProjectCreate` when a new project is being created. Every user is allowed to create a new project.
 - [ ] (moderate) From `home` screen, add redirects when clicking on the study group or its chat
 - [ ] (moderate) Display the global chat via `Chat.js` where the newest message is shown at the bottom, and a chat input field is displayed at the bottom with a `send message` button
-- [ ] (simple) Under group chat, re-use `Chat.js` to display the group chat
+- [X] (simple) Under group chat, re-use `Chat.js` to display the group chat
 - [ ] (difficult) Add hotkey in `Chat.js` that pressing `enter` will send the chat message
-- [ ] (difficult) When sending a message, add it to the list of messages
+- [X] (difficult) When sending a message, add it to the list of messages
 
 ## Calendar
-- [ ] (moderate) `Calendar.js` Build the calendar using javascript datetime
-- [ ] (moderate) Connect buttons to switch to previous and next month
-- [ ] (moderate) Create the `Wochenansicht` calendar
-- [ ] (difficult?) From given data, mark study projects in the calendar (@meet time, display the title), projects should only be in calendar after their start date, and before their deadline
+- [X] (moderate) `Calendar.js` Create the `Wochenansicht` calendar
+- [X] (moderate) Connect buttons to switch to previous and next month
+- [X] (difficult?) From given data, mark study projects in the calendar (@meet time, display the title), projects should only be in calendar after their start date, and before their deadline
+- [ ] (moderate) `Calendar.js` Create the `Monatsansicht` calendar
 
 ## Profile
 - [x] (simple) `Profile.js` Display a user avatar(?) and user information / description.
