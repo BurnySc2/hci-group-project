@@ -7,8 +7,9 @@ export default function AdminPanel(props) {
             <Link to="/">Normal study project website</Link>
             <Link to="/login">Login</Link>
             <Link to="/register">Register</Link>
-            <Link to="/mygroups">Meine Gruppen</Link>
-            <Link to="/oneofmygroups">Eine meiner Gruppen mit Chat</Link>
+            {/*TODO*/}
+            {/*<Link to="/mygroups">Meine Gruppen</Link>*/}
+            {/*<Link to="/oneofmygroups">Eine meiner Gruppen mit Chat</Link>*/}
             <Link to="/chat">Nur Chat</Link>
             <Link to="/createstudygroup">Study group - Gruppe erstellen</Link>
             <Link to="/createstudyproject">Study project erstellen</Link>
