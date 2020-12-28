@@ -30,7 +30,9 @@ export default function MyRouter(props) {
             <Route path="/joingroupinformation" component={GroupInfo} />
             <Route path="/joingrouprequest" component={GroupJoinRequest} />
             <Route path="/calendarmonthview" component={Calendar} />
-            <Route path="/calendarweekview" component={Calendar} />
+            <Route path="/calendarweekview">
+                <Calendar weekview />
+            </Route>
             <Route path="/myprofile" component={Profile} />
         </HashRouter>
     )
