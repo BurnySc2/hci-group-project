@@ -12,7 +12,7 @@ export default function Register(props) {
     let registerButton = () => {
         let text = ""
         if (email !== "") {
-            text = `Your account '${this.state.username}' has been created. An verification email to '${this.state.email}' has been sent! You may log in now.`
+            text = `Your account '${username}' has been created. An verification email to '${email}' has been sent! You may log in now.`
         } else {
             text =
                 "You left the email field empty! Account could not be created."

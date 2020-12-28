@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React from "react"
 import { NAVBAR } from "../../css/classes"
 
 export default function Navbar(props) {
@@ -8,7 +8,7 @@ export default function Navbar(props) {
                 <button
                     className={NAVBAR.button}
                     onClick={() => {
-                        this.props.navBarClick("groups")
+                        props.navBarClick("groups")
                     }}
                 >
                     Die Gruppen
@@ -16,7 +16,7 @@ export default function Navbar(props) {
                 <button
                     className={NAVBAR.button}
                     onClick={() => {
-                        this.props.navBarClick("chat")
+                        props.navBarClick("chat")
                     }}
                 >
                     Chat
@@ -24,7 +24,7 @@ export default function Navbar(props) {
                 <button
                     className={NAVBAR.button}
                     onClick={() => {
-                        this.props.navBarClick("calendar")
+                        props.navBarClick("calendar")
                     }}
                 >
                     Kalender
@@ -32,7 +32,7 @@ export default function Navbar(props) {
                 <button
                     className={NAVBAR.button}
                     onClick={() => {
-                        this.props.navBarClick("profile")
+                        props.navBarClick("profile")
                     }}
                 >
                     Profil
@@ -42,7 +42,7 @@ export default function Navbar(props) {
                 <button
                     className={NAVBAR.button}
                     onClick={() => {
-                        this.props.logOutClick()
+                        props.logOutClick()
                     }}
                 >
                     Logout
