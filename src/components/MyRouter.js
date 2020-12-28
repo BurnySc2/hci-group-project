@@ -28,7 +28,9 @@ export default function MyRouter(props) {
             <Route path="/joingroupinformation" component={Register} />
             <Route path="/joingrouprequest" component={Register} />
             <Route path="/calendarmonthview" component={Calendar} />
-            <Route path="/calendarweekview" component={Calendar} />
+            <Route path="/calendarweekview">
+                <Calendar weekview />
+            </Route>
             <Route path="/myprofile" component={Profile} />
         </HashRouter>
     )
