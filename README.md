@@ -47,7 +47,7 @@ In the cog menu the user can change his password, or remove his account.
 # Tasks (TODO list)
 
 ## Home screen
-- [ ] (simple) Fix the navbar so that the logout button is in the top right
+- [X] (simple) Fix the navbar so that the logout button is in the top right
 - [ ] (simple) Add `GroupInfo.js` which displayed the study group information
 - [ ] (simple) Add `GroupJoinRequest.js` which displays a submit form to be able to request to join the group
 - [ ] (moderate) Add interactivity to the `GroupInfo.js` buttons to get back to the filtered groups, and on `Anfrage senden` get to the `GroupJoinRequest.js` screen

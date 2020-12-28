@@ -40,7 +40,7 @@ export let STUDYPROJECTCREATE = {
 }
 
 export let NAVBAR = {
-    total: "flex flex-row content-evenly bg-gray-200 w-128",
+    total: "flex flex-row justify-between bg-gray-200 w-128",
     leftSide: "flex flex-row bg-blue-100",
     rightSide: "flex flex-row",
     button: "px-4 py-2 mx-2 my-1 font-black",
