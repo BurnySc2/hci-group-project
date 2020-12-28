@@ -10,6 +10,7 @@ import Calendar from "./loggedin/calendar/Calendar"
 import Profile from "./Profile"
 import AdminPanel from "./AdminPanel"
 import GroupInfo from "./GroupInfo"
+import GroupJoinRequest from "./GroupJoinRequest"
 import "../css/tailwind.css"
 
 export default function MyRouter(props) {
@@ -27,7 +28,7 @@ export default function MyRouter(props) {
             <Route path="/createstudygroup" component={GroupCreate} />
             <Route path="/createstudyproject" component={StudyProjectCreate} />
             <Route path="/joingroupinformation" component={GroupInfo} />
-            <Route path="/joingrouprequest" component={Register} />
+            <Route path="/joingrouprequest" component={GroupJoinRequest} />
             <Route path="/calendarmonthview" component={Calendar} />
             <Route path="/calendarweekview" component={Calendar} />
             <Route path="/myprofile" component={Profile} />
