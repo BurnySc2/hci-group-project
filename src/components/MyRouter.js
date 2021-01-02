@@ -29,7 +29,9 @@ export default function MyRouter(props) {
             <Route path="/createstudyproject" component={StudyProjectCreate} />
             <Route path="/joingroupinformation" component={GroupInfo} />
             <Route path="/joingrouprequest" component={GroupJoinRequest} />
-            <Route path="/calendarmonthview" component={Calendar} />
+            <Route path="/calendarmonthview">
+                <Calendar monthview/>
+            </Route>
             <Route path="/calendarweekview">
                 <Calendar weekview />
             </Route>

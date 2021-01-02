@@ -2,6 +2,7 @@ import React, { useState } from "react"
 
 export default function Calendar(props) {
     let [weekOffset, setWeekOffset] = useState(0)
+    let [monthOffset, setMonthOffset] = useState(0)
 
     let exampleData = [
         {
@@ -36,6 +37,14 @@ export default function Calendar(props) {
     let oneWeek = 7 * 24 * 60 * 60 * 1000
     // let endOfWeek = new Date(startOfWeek.getTime() + oneWeek)
 
+    let MonthTitle = [[],[],[],[],[],[],[]]
+    let startOfMonth = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate() - now.getDay() + 1 + 7 + 4 * monthOffset
+    )
+    let oneMonth = 4 * 7 *24 * 60 * 60 * 1000
+    let days = []
     for (let i = 0; i < exampleData.length; i++) {
         let meeting = exampleData[i]
         let meetingTimeThisWeek = new Date(
@@ -121,7 +130,7 @@ export default function Calendar(props) {
                         return (
                             <div
                                 key={value}
-                                className="text-center border-b-4 border-blue-200 py-4"
+                                className="grid-cols-7 border-b-4 border-blue-200 py-4"
                             >
                                 {value}
                             </div>
@@ -151,9 +160,80 @@ export default function Calendar(props) {
             </div>
         )
     } else {
-        // TODO Monatsansicht
-        JSXcontent = <div>TODO</div>
-    }
+        //Month-View
+        if (props.monthview) {
+            JSXcontent = <div>
+                <div className="flex flex-row justify-between m-6 px-6">
+                    <button
+                        className="rounded p-2 hover:bg-blue-200 bg-blue-300"
+                        onClick={(e) => {
+                            setMonthOffset(monthOffset - 1)
+                        }}
+                    >
+                        Vorheriger Monat
+                    </button>
+                    <div>
+                        {monthOfCalendarWeek} {" "} {yearOfCalendarWeek}
+                    </div>
+                    <button
+                        className="rounded p-2 hover:bg-blue-200 bg-blue-300"
+                        onClick={(e) => {
+                            setMonthOffset(monthOffset + 1)
+                        }}
+                    >
+                        Nächster Monat
+                    </button>
+                </div>
+                <div className="items-center grid-cols-7 border-4 border-black m-6">
+                    {/*Table header*/}
+                    {[
+                        "Montag",
+                        "Dienstag",
+                        "Mittwoch",
+                        "Donnerstag",
+                        "Freitag",
+                        "Samstag",
+                        "Sonntag"
 
+                    ].map((value) => {
+                        return (
+                            <div
+                                key={value}
+                                className="text-center border-b-4 border-blue-200 py-4"
+                            >
+                                {value}
+                            </div>
+                        )
+                    })}
+                    {/* Table body*/}
+                    {[
+
+
+                    ]}
+                    {/*TODO read data*/}
+
+                    {MonthTitle.map((month, index) => {
+                        return (
+                            <div key={`${month.toString()} ${index}`}>
+                                {month.map((htmlElement) => {
+                                    return (
+                                        <div
+                                            key={htmlElement}
+                                            className="h-64 text-center"
+                                        >
+                                            <div className="my-2">
+                                                {htmlElement}
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
+        }
+
+    }
     return <div>{JSXcontent}</div>
 }
