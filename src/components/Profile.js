@@ -26,7 +26,7 @@ export default function Profile(props) {
     }
     //let profilePic = {}
     let mycss = "m-auto"
-    let containercss = "flex flex-col bg-gray-500 m-20"
+    let containercss = "flex flex-col"
     return (
         <div className={containercss}>
             <div className="one-fourth" id="html">
@@ -43,7 +43,7 @@ export default function Profile(props) {
 
             {/*TODOZeilenumbruch einfügen*/}
             <div className={mycss}>
-                Ich belege dieses Semester folgende Module:}
+                Ich belege dieses Semester folgende Module:
                 {profileInfo.moduls}
             </div>
             <div className={mycss}>{profileInfo.description}</div>

@@ -18,6 +18,7 @@ export default function AdminPanel(props) {
             <Link to="/calendarmonthview">Kalender - Monatsansicht</Link>
             <Link to="/calendarweekview">Kalender - Wochenansicht</Link>
             <Link to="/myprofile">Eigenes Profil</Link>
+            <Link to="/profileedit">Eigenes Profil editieren</Link>
         </div>
     )
 }
