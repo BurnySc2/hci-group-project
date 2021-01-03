@@ -13,28 +13,28 @@ export let LOGINCLASSES = {
 
 export let GROUPCREATE = {
     background:
-        "flex flex-col w-128 h-128 self-center bg-gray-200 p-2 border-4 border-black rounded",
+        "flex flex-col bg-gray-200 m-2 p-2 border-4 border-black rounded",
+    grid: "justify-self-auto  grid grid-cols-2",
     titleBar: "self-center font-black",
-    // TODO Left align? right align?
-    col: "w-128 flex flex-col justify-between",
-    row: "w-128 flex flex-row items-center justify-between",
-    label: "w-64 m-2",
-    inputBox: "w-64 m-2 border-2 border-black rounded",
-    textArea: "w-64 h-min-64 m-2 border-2 border-black rounded",
+    col: "flex flex-col justify-between",
+    row: "flex flex-row items-center justify-between",
+    label: "m-2 flex-grow",
+    inputBox: "m-2 border-2 border-black rounded flex-grow",
+    textArea: "m-2 border-2 border-black rounded flex-grow",
     acceptButton: "m-2 p-2 border-2 border-black rounded hover:bg-green-400",
     cancelButton: "m-2 p-2 border-2 border-black rounded hover:bg-red-400",
 }
 
 export let STUDYPROJECTCREATE = {
-    background:
-        "flex flex-col w-128 h-128 self-center bg-gray-200 p-2 border-4 border-black rounded",
+    background: "flex flex-col bg-gray-200 p-2 border-4 border-black rounded",
+    grid: "justify-self-auto grid grid-cols-2",
     titleBar: "self-center font-black",
     // TODO Left align? right align?
-    col: "w-128 flex flex-col justify-between",
-    row: "w-128 flex flex-row items-center justify-between",
-    label: "w-64 m-2",
-    inputBox: "w-64 m-2 border-2 border-black rounded",
-    textArea: "w-64 h-min-64 m-2 border-2 border-black rounded",
+    col: "flex flex-col justify-between",
+    row: "flex flex-row items-center justify-between",
+    label: "m-2",
+    inputBox: "m-2 border-2 border-black rounded",
+    textArea: "h-min-64 m-2 border-2 border-black rounded",
     acceptButton: "m-2 p-2 border-2 border-black rounded hover:bg-green-400",
     cancelButton: "m-2 p-2 border-2 border-black rounded hover:bg-red-400",
 }

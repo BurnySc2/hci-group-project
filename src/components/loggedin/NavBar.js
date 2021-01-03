@@ -2,16 +2,25 @@ import React from "react"
 import { NAVBAR } from "../../css/classes"
 
 export default function Navbar(props) {
+    // TODO Underline text to let user know where he currently is
     return (
         <div className={NAVBAR.total}>
             <div className={NAVBAR.leftSide}>
                 <button
                     className={NAVBAR.button}
                     onClick={() => {
-                        props.navBarClick("groups")
+                        props.navBarClick("home")
                     }}
                 >
-                    Die Gruppen
+                    Home
+                </button>
+                <button
+                    className={NAVBAR.button}
+                    onClick={() => {
+                        props.navBarClick("groupsearch")
+                    }}
+                >
+                    Gruppensuche
                 </button>
                 <button
                     className={NAVBAR.button}

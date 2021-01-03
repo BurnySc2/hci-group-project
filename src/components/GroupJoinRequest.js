@@ -1,35 +1,20 @@
 import React from "react"
+import { exampleJoinGroupData } from "../constants/exampledata"
 
 export default function GroupJoinRequest(props) {
-    let propsData
-    if (!props.groupData) {
-        propsData = {
-            icon: "LinA",
-            title: "LinA-Lerngruppe",
-            createdBy: "Mike",
-            createdDate: new Date(2020, 11, 15),
-            subjects: ["Informatik", "Lineare Algebra"],
-            memberCount: "3",
-            memberLimit: "5",
-            members: ["Mike", "Bob", "Doug"],
-            description:
-                "Meiner Lerngruppe und mir fehlen für die Abgabe noch 2 Personen. Bitte meldet euch schnell, die nächste Abgabe ist am 20.12.!",
-        }
-    } else {
-        // TODO Get data through props.groupData
-        propsData = props.groupData
-    }
+    let groupData =
+        props.groupData !== undefined ? props.groupData : exampleJoinGroupData
 
     return (
         <div className="flex flex-col m-4 gap-2">
             <div className="flex flex-row m-2 justify-center">
                 <div className="mx-1">Anfrage an </div>
-                <div className="underline mx-1">{propsData.title}</div>
+                <div className="underline mx-1">{groupData.title}</div>
             </div>
             <div className="flex flex-row m-2 justify-center">
                 <div className="p-2">an</div>
                 <div className="border border-black border-2 border-rounded rounded py-1 justify px-6 self-center">
-                    {propsData.createdBy}
+                    {groupData.createdBy}
                 </div>
             </div>
             <textarea
@@ -37,8 +22,22 @@ export default function GroupJoinRequest(props) {
                 placeholder="Anfrage formulieren (Zeichenbegrenzung: 500)"
             />
             <div className={"flex flex-row justify-between m-4"}>
-                <button className="p-4 bg-blue-300 rounded">Senden</button>
-                <button className="p-4 bg-blue-300 rounded">Zurück</button>
+                <button
+                    className="p-4 bg-blue-300 rounded"
+                    onClick={(e) => {
+                        props.setGroupSearchRequestJoin(undefined)
+                    }}
+                >
+                    Senden
+                </button>
+                <button
+                    className="p-4 bg-blue-300 rounded"
+                    onClick={(e) => {
+                        props.setGroupSearchRequestJoin(undefined)
+                    }}
+                >
+                    Zurück
+                </button>
             </div>
         </div>
     )

@@ -1,5 +1,6 @@
 import React from "react"
 import profilePic from "../BSP_PB.png"
+import { exampleProfileInfo } from "../constants/exampledata"
 
 export default function Profile(props) {
     // TODO able to upload profile picture
@@ -14,16 +15,7 @@ export default function Profile(props) {
     // pw aendern / vergessen
     // account loeschen
 
-    let profileInfo = {
-        name: "Björk",
-        degreecourse: "Informatik",
-        semester: "5",
-        connections: "Email, Discord, Teams",
-        moduls:
-            "HCI, Analysis A, Ausgewählte Kapitel des Rechts für Informatiker",
-        description: "Außerdem bin ich sehr engagiert.",
-        hobbies: "Meine Hobbys sind Fahrrad fahren und Kochen.",
-    }
+    let profileInfo = exampleProfileInfo
     //let profilePic = {}
     let mycss = "m-auto"
     let containercss = "flex flex-col bg-gray-500 m-20"
