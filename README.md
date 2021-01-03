@@ -1,4 +1,4 @@
-# MyRouter
+# HCI Project
 
 ## Project
 
@@ -50,19 +50,19 @@ In the cog menu the user can change his password, or remove his account.
 - [X] (simple) Fix the navbar so that the logout button is in the top right
 - [X] (simple) Add `GroupInfo.js` which displayed the study group information
 - [X] (simple) Add `GroupJoinRequest.js` which displays a submit form to be able to request to join the group
-- [ ] (moderate) Add interactivity to the `GroupInfo.js` buttons to get back to the filtered groups, and on `Anfrage senden` get to the `GroupJoinRequest.js` screen
-- [ ] (moderate) Connect functionality with `neue Gruppe erstellen` button
-- [ ] (simple) Create `FilterFunction.js` which contains input text fields
-- [ ] (moderate) Connect the filter functions with logic (e.g. when the filter text changes, also update the list of groups that match the criteria)
+- [x] (moderate) Add interactivity to the `GroupInfo.js` buttons to get back to the filtered groups, and on `Anfrage senden` get to the `GroupJoinRequest.js` screen
+- [x] (moderate) Connect functionality with `neue Gruppe erstellen` button
+- [x] (simple) Create `FilterFunction.js` which contains input text fields
+- [x] (moderate) Connect the filter functions with logic (e.g. when the filter text changes, also update the list of groups that match the criteria)
 
 ## Chat screen
 - [X] (simple) On chat-home screen, list the study groups the user is in, together with the last chat message
-- [ ] (simple) `GroupInfoJoined.js` Group information screen: list all the study projects (scrollbar on overflow), and add a button to create a new study project 
+- [x] (simple) `GroupInfoJoinedPreview.js` Group information screen: list all the study projects (scrollbar on overflow), and add a button to create a new study project 
 - [ ] (simple) `StudyProjectInfo.js` display study project information. Allow the modification `StudyProjectEdit.js` and removal of the project
 - [ ] (simple) `GroupCog.js` Add group information that is displayed when the cog wheel is clicked
-- [ ] (moderate) Add a connection to `StudyProjectCreate` when a new project is being created. Every user is allowed to create a new project.
-- [ ] (moderate) From `home` screen, add redirects when clicking on the study group or its chat
-- [ ] (moderate) Display the global chat via `Chat.js` where the newest message is shown at the bottom, and a chat input field is displayed at the bottom with a `send message` button
+- [x] (moderate) Add a connection to `StudyProjectCreate` when a new project is being created. Every user is allowed to create a new project.
+- [x] (moderate) From `home` screen, add redirects when clicking on the study group or its chat
+- [x] (moderate) Display the global chat via `Chat.js` where the newest message is shown at the bottom, and a chat input field is displayed at the bottom with a `send message` button
 - [X] (simple) Under group chat, re-use `Chat.js` to display the group chat
 - [ ] (difficult) Add hotkey in `Chat.js` that pressing `enter` will send the chat message
 - [X] (difficult) When sending a message, add it to the list of messages
@@ -138,13 +138,13 @@ A standalone build will be created under the `build/` directory.
 
 # CouchDB
 ## Install couchdb (linux)
-sudo snap install couchdb
+`sudo snap install couchdb`
 
 couchdb will be running from now on
 
 ## Print couchdb info (assuming curl is installed)
 
-curl http://127.0.0.1:5984/
+`curl http://127.0.0.1:5984/`
 
 ## Enable cors:
 

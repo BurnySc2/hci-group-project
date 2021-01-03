@@ -2,8 +2,6 @@ import React, { useState } from "react"
 import Login from "./loggedout/Login"
 import Register from "./loggedout/Register"
 import LoggedIn from "./loggedin/LoggedIn"
-import GroupCreate from "./GroupCreate"
-import StudyProjectCreate from "./StudyProjectCreate"
 import Title from "./Title"
 
 export default function Website(props) {
@@ -21,7 +19,8 @@ export default function Website(props) {
     let register = (username, email, password) => {
         // TODO verify that username and email are not in use?
         // add new user account to database
-        setShow("login")
+        // Dont redirect to the login screen after pressing "register" to give the user feedback?
+        // setShow("login")
     }
 
     let logOutClick = () => {
@@ -30,19 +29,13 @@ export default function Website(props) {
     }
 
     // Which subpage to show
-    let subpage = null
+    let subpage = undefined
     if (show === "login") {
         subpage = <Login setShow={setShow} login={login} />
     } else if (show === "register") {
         subpage = <Register setShow={setShow} register={register} />
     } else if (show === "home") {
         subpage = <LoggedIn logOutClick={logOutClick} />
-    } else if (show === "groupcreate") {
-        subpage = <GroupCreate />
-    } else if (show === "studyprojectcreate") {
-        subpage = <StudyProjectCreate />
-    } else if (show === "profile") {
-    } else if (show === "contacts") {
     }
     return (
         <div className="flex flex-col">
