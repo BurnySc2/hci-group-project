@@ -47,8 +47,8 @@ export default function ProfileEdit(props) {
         <div className="m-2 p-2 flex flex-col">
             <div className="flex flex-col">
                 <div>Bild:</div>
-                {myInput("profilePicLink", "image")}
-            </div>
+                <img className={"w-64 h-64"} alt={"profile pic"} src={profileInfo.profilePicLink}/>
+                {myInput("profilePicLink", "text")}            </div>
             <div className="flex flex-col">
                 <div>Name:</div>
                 {myInput("name")}
@@ -74,14 +74,7 @@ export default function ProfileEdit(props) {
                 {myInput("description")}
             </div>
             {/*TODO remaining profile fields*/}
-            <div className="flex flew-row">
-                <button
-                    onClick={(e) => {
-                        storeNewProfileInfoInDatabase(userName, profileInfo)
-                    }}
-                >
-                    Apply
-                </button>
+            <div className="m-2 p-2 flex justify-between">
 
                 <button
                     onClick={(e) => {
@@ -89,6 +82,13 @@ export default function ProfileEdit(props) {
                     }}
                 >
                     Cancel
+                </button>
+                <button
+                    onClick={(e) => {
+                        storeNewProfileInfoInDatabase(userName, profileInfo)
+                    }}
+                >
+                    Apply
                 </button>
 
             </div>
