@@ -1,11 +1,11 @@
 import React, { useState } from "react"
-import moment, {months} from "moment"
+import moment, { months } from "moment"
 
 export default function MonthView(props) {
     let [monthOffset, setMonthOffset] = useState(0)
 
-     let exampleData = [
-         {
+    let exampleData = [
+        {
             title: "HCI Assignment1",
             color: "bg-red-300",
             // 0-6, Here: saturday
@@ -38,7 +38,7 @@ export default function MonthView(props) {
     )
     let oneMonth = 4 * 7 * 24 * 60 * 60 * 1000
     let days = []
-    let currentDate = moment().format('LL')
+    let currentDate = moment().format("LL")
 
     for (let i = 1; i <= 30; i++) {
         days.push(i)
@@ -55,9 +55,7 @@ export default function MonthView(props) {
                 >
                     Vorheriger Monat
                 </button>
-                <div>
-                    {currentDate}
-                </div>
+                <div>{currentDate}</div>
                 <button
                     className="rounded p-2 hover:bg-blue-200 bg-blue-300"
                     onClick={(e) => {
@@ -89,20 +87,21 @@ export default function MonthView(props) {
                 })}
                 {/* Table body*/}
                 {days.map((day, index) => {
-                        return (
-                            <div key = {`${day.toString()} ${index}`}>
-                                {days.map((dayElement) => {
-                                    return (
-                                        <div key={dayElement}
-                                             className="grid grid-template-columns:repeat(7, 1fr) grid-rows:repeat (5, 1fr)">
-                                        </div>
-                                    )
-                                }
-                            </div>
-                        )}
-
+                    return (
+                        <div key={`${day.toString()} ${index}`}>
+                            {days.map((dayElement) => {
+                                return (
+                                    <div
+                                        key={dayElement}
+                                        className="grid grid-template-columns:repeat(7, 1fr) grid-rows:repeat (5, 1fr)"
+                                    ></div>
+                                )
+                            })}
+                        </div>
+                    )
+                })}
+                })
                 {/*TODO read data*/}
-
                 {MonthTitle.map((month, index) => {
                     return (
                         <div key={`${month.toString()} ${index}`}>
@@ -122,7 +121,6 @@ export default function MonthView(props) {
                     )
                 })}
             </div>
-
         </div>
     )
 }
