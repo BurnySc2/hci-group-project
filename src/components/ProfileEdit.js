@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import profilePic from "../BSP_PB.png"
 
 export default function ProfileEdit(props) {
     // TODO get logged in username from props or useContext
@@ -8,7 +9,7 @@ export default function ProfileEdit(props) {
     // let [profileInfo, setProfileInfo] = useState(database.getuser(username))
 
     let [profileInfo, setProfileInfo] = useState({
-        profilePicLink: "imgurirgendwas",
+        profilePicLink: "https://i.imgur.com/9BiQit3.png",
         name: "Björk",
         degreecourse: "Informatik",
         semester: "5",
@@ -20,6 +21,9 @@ export default function ProfileEdit(props) {
     })
 
     let storeNewProfileInfoInDatabase = (username, newProfileInfo) => {
+        // TODO Implement database - apply changes
+    }
+    let cancel = () => {
         // TODO Implement database - apply changes
     }
 
@@ -41,16 +45,36 @@ export default function ProfileEdit(props) {
 
     return (
         <div className="m-2 p-2 flex flex-col">
-            <div className="flex flex-row">
+            <div className="flex flex-col">
+                <div>Bild:</div>
+                {myInput("profilePicLink", "image")}
+            </div>
+            <div className="flex flex-col">
                 <div>Name:</div>
                 {myInput("name")}
             </div>
-            <div className="flex flexr-row">
+            <div className="flex flex-col">
+                <div>Degreecourse:</div>
+                {myInput("degreecourse")}
+            </div>
+            <div className="flex flex-col">
                 <div>Semester:</div>
                 {myInput("semester", "number")}
             </div>
+            <div className="flex flex-col">
+                <div>Connections:</div>
+                {myInput("connections")}
+            </div>
+            <div className="flex flex-col">
+                <div>Moduls:</div>
+                {myInput("moduls")}
+            </div>
+            <div className="flex flex-col">
+                <div>Description:</div>
+                {myInput("description")}
+            </div>
             {/*TODO remaining profile fields*/}
-            <div className="flex flex-row">
+            <div className="flex flew-row">
                 <button
                     onClick={(e) => {
                         storeNewProfileInfoInDatabase(userName, profileInfo)
@@ -58,6 +82,15 @@ export default function ProfileEdit(props) {
                 >
                     Apply
                 </button>
+
+                <button
+                    onClick={(e) => {
+                        cancel()
+                    }}
+                >
+                    Cancel
+                </button>
+
             </div>
         </div>
     )
