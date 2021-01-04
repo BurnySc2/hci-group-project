@@ -40,6 +40,8 @@ export default function LoggedIn(props) {
     let [groupSearchRequestJoin, setGroupSearchRequestJoin] = useState(
         undefined
     )
+    // Profile screen
+    let [profileShowEditScreen, setProfileShowEditScreen] = useState(false)
 
     let navBarClick = (buttonName) => {
         setDisplay(buttonName)
@@ -49,6 +51,7 @@ export default function LoggedIn(props) {
         setHomeStudyProjectDisplay(undefined)
         setGroupSearchViewGroup(undefined)
         setGroupSearchRequestJoin(undefined)
+        setProfileShowEditScreen(false)
     }
 
     let createNewGroup = (groupData) => {
@@ -210,7 +213,12 @@ export default function LoggedIn(props) {
     }
     // PROFILE SCREEN
     else if (display === "profile") {
-        subPage = <Profile />
+        subPage = (
+            <Profile
+                profileShowEditScreen={profileShowEditScreen}
+                setProfileShowEditScreen={setProfileShowEditScreen}
+            />
+        )
     }
     return (
         <div className="flex flex-col">

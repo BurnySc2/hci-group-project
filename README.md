@@ -75,9 +75,9 @@ In the cog menu the user can change his password, or remove his account.
 
 ## Profile
 - [x] (simple) `Profile.js` Display a user avatar(?) and user information / description.
-- [ ] (simple) `ProfileCog.js` display buttons: Profil bearbeiten, PW aendern, Account loeschen
-- [ ] (simple) `ProfileEdit.js` via input fields, allow the user to edit his information / description
-- [ ] (moderate) On `profil bearbeiten`, redirect the user to `ProfileEdit.js`
+- [x] (simple) `ProfileCog.js` display buttons: Profil bearbeiten, PW aendern, Account loeschen
+- [x] (simple) `ProfileEdit.js` via input fields, allow the user to edit his information / description
+- [x] (moderate) On `profil bearbeiten`, redirect the user to `ProfileEdit.js`
 
 ## Logout
 - [x] (simple) On log out, send the user to the login screen
