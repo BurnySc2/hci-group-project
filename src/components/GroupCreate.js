@@ -70,7 +70,7 @@ export default function GroupCreate(props) {
                     max="1000"
                     value={newGroupData.memberslimit}
                     className={GROUPCREATE.inputBox}
-                    onChange={(e) => changeField("memberlimit", e.target.value)}
+                    onChange={(e) => changeField("memberslimit", e.target.value)}
                 />
                 {/* </div> */}
             </div>
