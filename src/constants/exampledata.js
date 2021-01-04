@@ -90,6 +90,7 @@ export let exampleStudyProjects = [
 ]
 
 export let exampleProfileInfo = {
+    profilePicLink: "https://i.imgur.com/9BiQit3.png",
     name: "Björk",
     degreecourse: "Informatik",
     semester: "5",

@@ -1,41 +1,32 @@
 import React, { useState } from "react"
-import profilePic from "../BSP_PB.png"
+import { exampleProfileInfo } from "../constants/exampledata"
 
 export default function ProfileEdit(props) {
     // TODO get logged in username from props or useContext
     let userName = "Dominik"
 
-    // TODO Get profileInfo from database
-    // let [profileInfo, setProfileInfo] = useState(database.getuser(username))
-
-    let [profileInfo, setProfileInfo] = useState({
-        profilePicLink: "https://i.imgur.com/9BiQit3.png",
-        name: "Björk",
-        degreecourse: "Informatik",
-        semester: "5",
-        connections: "Email, Discord, Teams",
-        moduls:
-            "HCI, Analysis A, Ausgewählte Kapitel des Rechts für Informatiker",
-        description: "Außerdem bin ich sehr engagiert.",
-        hobbies: "Meine Hobbys sind Fahrrad fahren und Kochen.",
+    // Get initial data from props (or if not given: from exampleProfileInfo)
+    let profileInfoData =
+        props.profileInfo !== undefined ? props.profileInfo : exampleProfileInfo
+    let [profileInfoChanged, setProfileInfoChanged] = useState({
+        ...profileInfoData,
     })
 
     let storeNewProfileInfoInDatabase = (username, newProfileInfo) => {
         // TODO Implement database - apply changes
-    }
-    let cancel = () => {
-        // TODO Implement database - apply changes
+        props.setProfileInfo({ ...newProfileInfo })
+        props.setProfileShowEditScreen(false)
     }
 
-    let myInput = (myKey, type="text") => {
+    let myInput = (myKey, type = "text") => {
         return (
             <input
                 className="border-2"
                 type={type}
-                value={profileInfo[myKey]}
+                value={profileInfoChanged[myKey]}
                 onChange={(e) => {
-                    setProfileInfo({
-                        ...profileInfo,
+                    setProfileInfoChanged({
+                        ...profileInfoChanged,
                         [myKey]: e.target.value,
                     })
                 }}
@@ -46,9 +37,14 @@ export default function ProfileEdit(props) {
     return (
         <div className="m-2 p-2 flex flex-col">
             <div className="flex flex-col">
-                <div>Bild:</div>
-                <img className={"w-64 h-64"} alt={"profile pic"} src={profileInfo.profilePicLink}/>
-                {myInput("profilePicLink", "text")}            </div>
+                <img
+                    className={"m-auto"}
+                    alt={"profile pic"}
+                    src={profileInfoChanged.profilePicLink}
+                />
+                <div>Profil Bild:</div>
+                {myInput("profilePicLink", "text")}{" "}
+            </div>
             <div className="flex flex-col">
                 <div>Name:</div>
                 {myInput("name")}
@@ -75,22 +71,23 @@ export default function ProfileEdit(props) {
             </div>
             {/*TODO remaining profile fields*/}
             <div className="m-2 p-2 flex justify-between">
-
                 <button
                     onClick={(e) => {
-                        cancel()
+                        props.setProfileShowEditScreen(false)
                     }}
                 >
                     Cancel
                 </button>
                 <button
                     onClick={(e) => {
-                        storeNewProfileInfoInDatabase(userName, profileInfo)
+                        storeNewProfileInfoInDatabase(
+                            userName,
+                            profileInfoChanged
+                        )
                     }}
                 >
                     Apply
                 </button>
-
             </div>
         </div>
     )
