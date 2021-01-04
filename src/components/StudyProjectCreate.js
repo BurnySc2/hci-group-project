@@ -21,7 +21,7 @@ export default function StudyProjectCreate(props) {
     }
 
     let convertTimestampToDate = (timestamp) => {
-        return moment(timestamp).format("mm:DD:YYYY")
+        return moment(timestamp).format(`YYYY-MM-DD`)
     }
 
     let convertDateToTimestamp = (date) => {
