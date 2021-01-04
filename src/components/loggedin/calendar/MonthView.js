@@ -86,21 +86,14 @@ export default function MonthView(props) {
                     )
                 })}
                 {/* Table body*/}
+                <div>filler</div>
                 {days.map((day, index) => {
                     return (
-                        <div key={`${day.toString()} ${index}`}>
-                            {days.map((dayElement) => {
-                                return (
-                                    <div
-                                        key={dayElement}
-                                        className="grid grid-template-columns:repeat(7, 1fr) grid-rows:repeat (5, 1fr)"
-                                    ></div>
-                                )
-                            })}
-                        </div>
+                    <div key={`${day.toString()} ${index}`}>
+                {day}
+                    </div>
                     )
                 })}
-                })
                 {/*TODO read data*/}
                 {MonthTitle.map((month, index) => {
                     return (
