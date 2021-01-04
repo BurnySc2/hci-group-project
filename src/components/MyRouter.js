@@ -11,6 +11,7 @@ import Profile from "./Profile"
 import AdminPanel from "./AdminPanel"
 import GroupInfo from "./GroupInfo"
 import GroupJoinRequest from "./GroupJoinRequest"
+import ProfileEdit from "./ProfileEdit"
 import "../css/tailwind.css"
 import GroupInfoJoined from "./GroupInfoJoined"
 import LoggedIn from "./loggedin/LoggedIn"
@@ -65,6 +66,7 @@ export default function MyRouter(props) {
                 <Calendar weekview />
             </Route>
             <Route path="/myprofile" component={Profile} />
+            <Route path="/profileedit" component={ProfileEdit} />
         </HashRouter>
     )
 }
