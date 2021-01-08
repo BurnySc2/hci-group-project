@@ -1,5 +1,6 @@
 import React from "react"
 import { exampleJoinGroupData } from "../constants/exampledata"
+import { BUTTONS } from "../css/classes"
 
 export default function GroupInfo(props) {
     // This page is displayed for people who want to know more about the group
@@ -11,7 +12,7 @@ export default function GroupInfo(props) {
         <div className="flex flex-col">
             <div className="flex flex-row justify-start">
                 <button
-                    className="p-2 bg-blue-300 rounded"
+                    className={BUTTONS.backButton}
                     onClick={(e) => props.setGroupSearchViewGroup(undefined)}
                 >
                     Back
@@ -30,7 +31,7 @@ export default function GroupInfo(props) {
                 </div>
                 <div className="my-8">{groupData.description}</div>
                 <button
-                    className="flex p-2 bg-blue-200 rounded self-center"
+                    className={BUTTONS.acceptButton}
                     onClick={(e) => {
                         props.setGroupSearchViewGroup(undefined)
                         props.setGroupSearchRequestJoin(groupData.id)

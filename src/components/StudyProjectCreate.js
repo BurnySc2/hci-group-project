@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { STUDYPROJECTCREATE } from "../css/classes"
+import { BUTTONS, STUDYPROJECTCREATE } from "../css/classes"
 import moment from "moment"
 import { WEEKDAYS } from "../constants/constants"
 
@@ -130,7 +130,7 @@ export default function StudyProjectCreate(props) {
             </div>
             <div className={STUDYPROJECTCREATE.row}>
                 <button
-                    className={STUDYPROJECTCREATE.acceptButton}
+                    className={BUTTONS.acceptButton}
                     onClick={(e) => {
                         props.createNewStudyProject(
                             props.groupid,
@@ -141,7 +141,7 @@ export default function StudyProjectCreate(props) {
                     Create New Study Project
                 </button>
                 <button
-                    className={STUDYPROJECTCREATE.cancelButton}
+                    className={BUTTONS.declineButton}
                     onClick={(e) => {
                         props.setHomeDisplay("mygroup")
                     }}

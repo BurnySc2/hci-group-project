@@ -6,6 +6,7 @@ import {
     exampleStudyProjects,
 } from "../constants/exampledata"
 import { ICONS } from "../constants/constants"
+import { BUTTONS } from "../css/classes"
 
 export default function GroupInfoJoined(props) {
     /*
@@ -37,7 +38,10 @@ export default function GroupInfoJoined(props) {
     return (
         <div className={"flex flex-col"}>
             <div className={"flex flex-row justify-between"}>
-                <button onClick={(e) => props.setHomeDisplay(undefined)}>
+                <button
+                    className={BUTTONS.backButton}
+                    onClick={(e) => props.setHomeDisplay(undefined)}
+                >
                     Back
                 </button>
                 <div className={"flex flex-row"}>
@@ -58,7 +62,7 @@ export default function GroupInfoJoined(props) {
                 <div className={"flex flex-col"}>
                     {/*create new study project*/}
                     <button
-                        className={"border-2 border-black m-1 p-1"}
+                        className={BUTTONS.acceptButton}
                         onClick={(e) => {
                             props.setHomeDisplay("createstudyproject")
                         }}
@@ -69,6 +73,7 @@ export default function GroupInfoJoined(props) {
                     {studyProjects.map((projectData) => {
                         return (
                             <button
+                                className={BUTTONS.editButton}
                                 key={projectData.id}
                                 onClick={(e) => {
                                     props.setHomeDisplay("studyproject")

@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import ChatMessage from "./ChatMessage"
 import { exampleChatMessages } from "../constants/exampledata"
+import { BUTTONS, INPUTFIELD } from "../css/classes"
 const cloneDeep = require("clone-deep")
 
 export default function Chat(props) {
@@ -56,7 +57,7 @@ export default function Chat(props) {
         chatInput = (
             <div className="flex flex-row bg-blue-100">
                 <input
-                    className="self-start w-full p-2 m-2"
+                    className={INPUTFIELD.chat}
                     type="text"
                     placeholder={"Message"}
                     value={newMessageText}
@@ -65,7 +66,7 @@ export default function Chat(props) {
                     }}
                 />
                 <button
-                    className="self-end p-2 m-2"
+                    className={BUTTONS.acceptButton}
                     onClick={(e) => {
                         addChatMessage(username, newMessageText)
                     }}
@@ -77,7 +78,7 @@ export default function Chat(props) {
     }
 
     return (
-        <div>
+        <div className={"m-2"}>
             <div className="flex flex-col bg-blue-200">{messagesAsHtml}</div>
             {chatInput}
         </div>
