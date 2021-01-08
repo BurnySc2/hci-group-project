@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { exampleProfileInfo } from "../constants/exampledata"
 import ProfileEdit from "./ProfileEdit"
+import { BUTTONS } from "../css/classes"
 
 export default function Profile(props) {
     // TODO get logged in username from props or useContext
@@ -21,7 +22,7 @@ export default function Profile(props) {
                 <div className={"flex flex-row justify-end"}>
                     <div className={"flex flex-col m-2 p-2"}>
                         <button
-                            className={"border-2 border-black m-1 p-1"}
+                            className={BUTTONS.editButton}
                             onClick={(e) =>
                                 props.setProfileShowEditScreen(true)
                             }
@@ -29,7 +30,7 @@ export default function Profile(props) {
                             Edit Profile
                         </button>
                         <button
-                            className={"border-2 border-black m-1 p-1"}
+                            className={BUTTONS.declineButton}
                             onClick={(e) => {
                                 removeAccount(userName)
                             }}

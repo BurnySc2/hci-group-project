@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { LOGINCLASSES } from "../../css/classes"
+import { BUTTONS, LOGINCLASSES } from "../../css/classes"
 
 export default function Login(props) {
     let [username, setUsername] = useState("")
@@ -17,9 +17,9 @@ export default function Login(props) {
     return (
         <div className={LOGINCLASSES.background}>
             <div className={LOGINCLASSES.headbar}>
-                <button className={LOGINCLASSES.highlightedBox}>Login</button>
+                <button className={BUTTONS.highlightedBox}>Login</button>
                 <button
-                    className={LOGINCLASSES.notHighlightedBox}
+                    className={BUTTONS.notHighlightedBox}
                     onClick={() => props.setShow("register")}
                 >
                     Register
@@ -47,7 +47,7 @@ export default function Login(props) {
                 />
             </div>
             <button
-                className={LOGINCLASSES.button}
+                className={BUTTONS.acceptButton}
                 onClick={() => {
                     loginButton()
                 }}

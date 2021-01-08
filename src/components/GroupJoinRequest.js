@@ -1,5 +1,6 @@
 import React from "react"
 import { exampleJoinGroupData } from "../constants/exampledata"
+import { BUTTONS } from "../css/classes"
 
 export default function GroupJoinRequest(props) {
     let groupData =
@@ -23,7 +24,7 @@ export default function GroupJoinRequest(props) {
             />
             <div className={"flex flex-row justify-between m-4"}>
                 <button
-                    className="p-4 bg-blue-300 rounded"
+                    className={BUTTONS.acceptButton}
                     onClick={(e) => {
                         props.setGroupSearchRequestJoin(undefined)
                     }}
@@ -31,7 +32,7 @@ export default function GroupJoinRequest(props) {
                     Senden
                 </button>
                 <button
-                    className="p-4 bg-blue-300 rounded"
+                    className={BUTTONS.declineButton}
                     onClick={(e) => {
                         props.setGroupSearchRequestJoin(undefined)
                     }}

@@ -5,10 +5,7 @@ export default function GroupInfoPreview(props) {
     let group = props.group
 
     return (
-        <div
-            key={`${group.icon}${group.title}`}
-            className="flex flex-col m-2 p-2 border-2 border-black"
-        >
+        <div key={`${group.icon}${group.title}`} className="flex flex-col">
             <div className="flex flex-row">
                 <div className={"border-2 border-black px-1 mx-1"}>
                     {group.icon}

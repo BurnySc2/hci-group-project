@@ -1,5 +1,5 @@
 import React from "react"
-import { NAVBAR } from "../../css/classes"
+import { BUTTONS, NAVBAR } from "../../css/classes"
 
 export default function Navbar(props) {
     // TODO Underline text to let user know where he currently is
@@ -7,7 +7,7 @@ export default function Navbar(props) {
         <div className={NAVBAR.total}>
             <div className={NAVBAR.leftSide}>
                 <button
-                    className={NAVBAR.button}
+                    className={BUTTONS.navbarButton}
                     onClick={() => {
                         props.navBarClick("home")
                     }}
@@ -15,7 +15,7 @@ export default function Navbar(props) {
                     Home
                 </button>
                 <button
-                    className={NAVBAR.button}
+                    className={BUTTONS.navbarButton}
                     onClick={() => {
                         props.navBarClick("groupsearch")
                     }}
@@ -23,7 +23,7 @@ export default function Navbar(props) {
                     Gruppensuche
                 </button>
                 <button
-                    className={NAVBAR.button}
+                    className={BUTTONS.navbarButton}
                     onClick={() => {
                         props.navBarClick("chat")
                     }}
@@ -31,7 +31,7 @@ export default function Navbar(props) {
                     Chat
                 </button>
                 <button
-                    className={NAVBAR.button}
+                    className={BUTTONS.navbarButton}
                     onClick={() => {
                         props.navBarClick("calendar")
                     }}
@@ -39,7 +39,7 @@ export default function Navbar(props) {
                     Kalender
                 </button>
                 <button
-                    className={NAVBAR.button}
+                    className={BUTTONS.navbarButton}
                     onClick={() => {
                         props.navBarClick("profile")
                     }}
@@ -49,7 +49,7 @@ export default function Navbar(props) {
             </div>
             <div className={NAVBAR.rightSide}>
                 <button
-                    className={NAVBAR.button}
+                    className={BUTTONS.logoutButton}
                     onClick={() => {
                         props.logOutClick()
                     }}

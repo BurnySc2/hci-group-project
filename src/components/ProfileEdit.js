@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { exampleProfileInfo } from "../constants/exampledata"
+import { BUTTONS, INPUTFIELD } from "../css/classes"
 
 export default function ProfileEdit(props) {
     // TODO get logged in username from props or useContext
@@ -21,7 +22,7 @@ export default function ProfileEdit(props) {
     let myInput = (myKey, type = "text") => {
         return (
             <input
-                className="mx-2 border-2"
+                className={INPUTFIELD.profileEdit}
                 type={type}
                 value={profileInfoChanged[myKey]}
                 onChange={(e) => {
@@ -74,7 +75,7 @@ export default function ProfileEdit(props) {
             {/*TODO remaining profile fields*/}
             <div className="m-2 p-2 flex justify-between">
                 <button
-                    className="font-bold text-2xl hover:bg-red-400"
+                    className={BUTTONS.declineButton}
                     onClick={(e) => {
                         props.setProfileShowEditScreen(false)
                     }}
@@ -82,7 +83,7 @@ export default function ProfileEdit(props) {
                     Cancel
                 </button>
                 <button
-                    className="font-bold text-2xl hover:bg-green-400"
+                    className={BUTTONS.acceptButton}
                     onClick={(e) => {
                         storeNewProfileInfoInDatabase(
                             userName,

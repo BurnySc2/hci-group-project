@@ -10,6 +10,16 @@ export let WEEKDAYS = [
     "Samstag",
 ]
 
+export let WEEKDAYSCALENDAR = [
+    "Montag",
+    "Dienstag",
+    "Mittwoch",
+    "Donnerstag",
+    "Freitag",
+    "Samstag",
+    "Sonntag",
+]
+
 export let defaultFilter = {
     groupname: "",
     fieldofstudy: "",

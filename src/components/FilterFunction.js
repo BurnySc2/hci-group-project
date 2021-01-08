@@ -1,4 +1,5 @@
 import React from "react"
+import { INPUTFIELD } from "../css/classes"
 
 export default function FilterFunction(props) {
     /*
@@ -12,7 +13,7 @@ export default function FilterFunction(props) {
     let inputField = (key, placeholder = "", type = "txt") => {
         return (
             <input
-                className={"border-2 border-black p-1 m-1"}
+                className={INPUTFIELD.filterFunction}
                 type={type}
                 placeholder={placeholder}
                 value={props.filterSettings[key]}
@@ -22,7 +23,7 @@ export default function FilterFunction(props) {
     }
 
     return (
-        <div className={"flex flex-col border-2 border-black m-1 p-1"}>
+        <div className={"flex flex-col border-2 border-black m-2 p-2"}>
             <div className={"p-1 m-1"}>Filterfunktion</div>
             {inputField("groupname", "Gruppenname")}
             {inputField("fieldofstudy", "Studiengang")}
