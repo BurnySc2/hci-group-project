@@ -133,3 +133,28 @@ export let exampleChatMessages = [
         time: Date.now(),
     },
 ]
+
+export let exampleCalendarData = [
+    {
+        id: 1,
+        title: "HCI Assignment1",
+        color: "bg-red-300",
+        // 0-6, Here: saturday
+        meetingDay: 5,
+        // 14:30
+        meetingTime: new Date(0, 0, 0, 14, 30).getTime(),
+        startdate: new Date(2020, 11, 1).getTime(),
+        deadline: new Date(2021, 0, 4).getTime(),
+    },
+    {
+        id: 2,
+        title: "HCI Assignment2",
+        color: "bg-red-500",
+        // 0-6, Here: thursday
+        meetingDay: 3,
+        // 12:00
+        meetingTime: new Date(0, 0, 0, 12, 0).getTime(),
+        startdate: new Date(2020, 11, 25).getTime(),
+        deadline: new Date(2021, 1, 4).getTime(),
+    },
+]

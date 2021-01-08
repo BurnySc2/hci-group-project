@@ -21,6 +21,7 @@ import {
 } from "../../constants/constants"
 import GroupInfo from "../GroupInfo"
 import GroupJoinRequest from "../GroupJoinRequest"
+import { BUTTONS, SECTIONS } from "../../css/classes"
 
 export default function LoggedIn(props) {
     // Zustand auf der website: wo man sich befindet
@@ -40,6 +41,8 @@ export default function LoggedIn(props) {
     let [groupSearchRequestJoin, setGroupSearchRequestJoin] = useState(
         undefined
     )
+    // Calendar screen
+    let [calendarWeekView, setCalendarWeekView] = useState(false)
     // Profile screen
     let [profileShowEditScreen, setProfileShowEditScreen] = useState(false)
 
@@ -81,22 +84,22 @@ export default function LoggedIn(props) {
     if (display === "home") {
         if (homeDisplay === undefined) {
             subPage = (
-                <div>
+                <div className={SECTIONS.homeGroupDisplaySection}>
                     <button
-                        className={"border-2 border-black rounded m-2 p-1"}
+                        className={BUTTONS.acceptButton}
                         onClick={(e) => {
                             setHomeDisplay("creategroup")
                         }}
                     >
                         + neue Gruppe erstellen
                     </button>
-                    <div className={"flex flex-col"}>
+                    <div className={"grid grid-cols-1"}>
                         {/*TODO get all groups the logged in user is in, and then give the information towards the components via props*/}
                         {groups.map((group) => {
                             return (
                                 <button
                                     key={group.id}
-                                    className={"m-2"}
+                                    className={BUTTONS.editButton}
                                     onClick={(e) => {
                                         setHomeDisplay("mygroup")
                                         setHomeGroupDisplay(group.id)
@@ -141,6 +144,7 @@ export default function LoggedIn(props) {
                 <div className={"flex flex-col"}>
                     <div className={"flex flex-row justify-between"}>
                         <button
+                            className={BUTTONS.backButton}
                             onClick={(e) => {
                                 setHomeDisplay("mygroup")
                             }}
@@ -176,6 +180,7 @@ export default function LoggedIn(props) {
                             })
                             .map((group) => (
                                 <button
+                                    className={BUTTONS.editButton}
                                     key={group.id}
                                     onClick={(e) => {
                                         setGroupSearchViewGroup(group.id)
@@ -209,7 +214,12 @@ export default function LoggedIn(props) {
     }
     // CALENDAR SCREEN
     else if (display === "calendar") {
-        subPage = <Calendar weekview />
+        subPage = (
+            <Calendar
+                weekview={calendarWeekView}
+                setCalendarWeekView={setCalendarWeekView}
+            />
+        )
     }
     // PROFILE SCREEN
     else if (display === "profile") {

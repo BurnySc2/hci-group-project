@@ -19,7 +19,7 @@ export default function GroupInfoJoinedPreview(props) {
     }
      */
     return (
-        <div className={"flex flex-row border-2 border-gray-500 p-2"}>
+        <div className={"flex flex-row"}>
             <div>
                 <div
                     className={

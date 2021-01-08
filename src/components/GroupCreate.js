@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { GROUPCREATE } from "../css/classes"
+import { BUTTONS, GROUPCREATE, INPUTFIELD } from "../css/classes"
 
 export default function GroupCreate(props) {
     let [newGroupData, setNewGroupData] = useState({
@@ -21,13 +21,13 @@ export default function GroupCreate(props) {
                 {/* <div className={GROUPCREATE.col}> */}
                 <div className={GROUPCREATE.label}>Group Name</div>
                 <input
-                    className={GROUPCREATE.inputBox}
+                    className={INPUTFIELD.groupCreate}
                     value={newGroupData.groupname}
                     onChange={(e) => changeField("groupname", e.target.value)}
                 />
                 <div className={GROUPCREATE.label}>Field of Study</div>
                 <select
-                    className={GROUPCREATE.inputBox}
+                    className={INPUTFIELD.groupCreate}
                     name="studienfach"
                     id="studienfach"
                     value={newGroupData.fieldofstudy}
@@ -47,7 +47,7 @@ export default function GroupCreate(props) {
                     /> */}
                 <div className={GROUPCREATE.label}>Modules</div>
                 <textarea
-                    className={GROUPCREATE.textArea}
+                    className={INPUTFIELD.groupCreate}
                     style={{ minHeight: "5rem" }}
                     placeholder="HCI, Etech, Programmieren 2"
                     value={newGroupData.modulestext}
@@ -55,7 +55,7 @@ export default function GroupCreate(props) {
                 />
                 <div className={GROUPCREATE.label}>Group Description</div>
                 <textarea
-                    className={GROUPCREATE.textArea}
+                    className={INPUTFIELD.groupCreate}
                     style={{ minHeight: "5rem" }}
                     placeholder="We are looking for more Computer Science students who want to study for the HCI exam."
                     value={newGroupData.groupdescription}
@@ -69,7 +69,7 @@ export default function GroupCreate(props) {
                     min="1"
                     max="1000"
                     value={newGroupData.memberslimit}
-                    className={GROUPCREATE.inputBox}
+                    className={INPUTFIELD.groupCreate}
                     onChange={(e) =>
                         changeField("memberslimit", e.target.value)
                     }
@@ -78,7 +78,7 @@ export default function GroupCreate(props) {
             </div>
             <div className={GROUPCREATE.row}>
                 <button
-                    className={GROUPCREATE.acceptButton}
+                    className={BUTTONS.acceptButton}
                     onClick={(e) => {
                         props.createNewGroup(newGroupData)
                     }}
@@ -86,7 +86,7 @@ export default function GroupCreate(props) {
                     Create New Group
                 </button>
                 <button
-                    className={GROUPCREATE.cancelButton}
+                    className={BUTTONS.declineButton}
                     onClick={(e) => props.setHomeDisplay(undefined)}
                 >
                     Cancel
