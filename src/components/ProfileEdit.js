@@ -35,6 +35,8 @@ export default function ProfileEdit(props) {
         )
     }
 
+    let labelClasses = "font-bold"
+
     return (
         <div className="m-2 p-2 flex flex-col">
             <div className="flex flex-col">
@@ -43,31 +45,31 @@ export default function ProfileEdit(props) {
                     alt={"profile pic"}
                     src={profileInfoChanged.profilePicLink}
                 />
-                <div>Profil Bild:</div>
+                <div className={labelClasses}>Profil Bild:</div>
                 {myInput("profilePicLink", "text")}{" "}
             </div>
             <div className="flex flex-col">
-                <div>Name:</div>
+                <div className={labelClasses}>Name:</div>
                 {myInput("name")}
             </div>
             <div className="flex flex-col">
-                <div>Degreecourse:</div>
+                <div className={labelClasses}>Degreecourse:</div>
                 {myInput("degreecourse")}
             </div>
             <div className="flex flex-col">
-                <div>Semester:</div>
+                <div className={labelClasses}>Semester:</div>
                 {myInput("semester", "number")}
             </div>
             <div className="flex flex-col">
-                <div>Connections:</div>
+                <div className={labelClasses}>Connections:</div>
                 {myInput("connections")}
             </div>
             <div className="flex flex-col">
-                <div>Moduls:</div>
+                <div className={labelClasses}>Moduls:</div>
                 {myInput("moduls")}
             </div>
             <div className="flex flex-col">
-                <div>Description:</div>
+                <div className={labelClasses}>Description:</div>
                 {myInput("description")}
             </div>
             {/*TODO remaining profile fields*/}
