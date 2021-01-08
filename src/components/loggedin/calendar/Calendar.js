@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import WeekView from "./WeekView"
 import MonthView from "./MonthView"
 import { BUTTONS } from "../../../css/classes"
