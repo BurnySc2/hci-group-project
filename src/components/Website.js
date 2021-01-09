@@ -17,7 +17,6 @@ export default function Website(props) {
             username: username,
         })
         setShow("home")
-        setContextData()
     }
 
     let register = (username, email, password) => {
