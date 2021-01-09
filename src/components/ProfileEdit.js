@@ -1,10 +1,12 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { exampleProfileInfo } from "../constants/exampledata"
 import { BUTTONS, INPUTFIELD } from "../css/classes"
+import { CONTEXT } from "../constants/constants"
 
 export default function ProfileEdit(props) {
     // TODO get logged in username from props or useContext
-    let userName = "Dominik"
+    // eslint-disable-next-line no-unused-vars
+    let { contextData, setContextData } = useContext(CONTEXT)
 
     // Get initial data from props (or if not given: from exampleProfileInfo)
     let profileInfoData =
@@ -14,7 +16,7 @@ export default function ProfileEdit(props) {
     })
 
     let storeNewProfileInfoInDatabase = (username, newProfileInfo) => {
-        // TODO Implement database - apply changes
+        // TODO Implement database - apply changes to profile of username
         props.setProfileInfo({ ...newProfileInfo })
         props.setProfileShowEditScreen(false)
     }
@@ -86,7 +88,7 @@ export default function ProfileEdit(props) {
                     className={BUTTONS.acceptButton}
                     onClick={(e) => {
                         storeNewProfileInfoInDatabase(
-                            userName,
+                            contextData.username,
                             profileInfoChanged
                         )
                     }}

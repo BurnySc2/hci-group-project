@@ -1,4 +1,10 @@
-import React from "react"
+import React, { createContext } from "react"
+
+export let CONTEXT = createContext({})
+
+export let defaultContextData = {
+    username: null,
+}
 
 export let WEEKDAYS = [
     "Sonntag",
