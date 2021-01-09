@@ -1,19 +1,23 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import Login from "./loggedout/Login"
 import Register from "./loggedout/Register"
 import LoggedIn from "./loggedin/LoggedIn"
 import Title from "./Title"
+import { CONTEXT } from "../constants/constants"
 
 export default function Website(props) {
     // eslint-disable-next-line
-    let [loggedIn, setLoggedIn] = useState("")
-    // eslint-disable-next-line
     let [show, setShow] = useState("home")
+    let { contextData, setContextData } = useContext(CONTEXT)
 
     let login = (username, password) => {
         // TODO verify username and password match
-        setLoggedIn(username)
+        setContextData({
+            ...contextData,
+            username: username,
+        })
         setShow("home")
+        setContextData()
     }
 
     let register = (username, email, password) => {
@@ -24,7 +28,10 @@ export default function Website(props) {
     }
 
     let logOutClick = () => {
-        setLoggedIn("")
+        setContextData({
+            ...contextData,
+            username: null,
+        })
         setShow("login")
     }
 

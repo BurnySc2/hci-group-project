@@ -1,16 +1,24 @@
-import React, { useState } from "react"
+import React, { useContext } from "react"
 import { exampleProfileInfo } from "../constants/exampledata"
 import ProfileEdit from "./ProfileEdit"
 import { BUTTONS } from "../css/classes"
+import { CONTEXT } from "../constants/constants"
 
 export default function Profile(props) {
-    // TODO get logged in username from props or useContext
-    let userName = "Dominik"
+    // eslint-disable-next-line no-unused-vars
+    let { contextData, setContextData } = useContext(CONTEXT)
 
-    let [profileInfo, setProfileInfo] = useState(exampleProfileInfo)
+    let getProfileInfo = (userName) => {
+        // TODO return database profile data entry for username
+        return exampleProfileInfo
+    }
+    let profileInfo = getProfileInfo(contextData.username)
 
-    let removeAccount = (username) => {
-        // TODO Implement database - remove account by username
+    let removeAccount = (userName) => {
+        if (userName === null) {
+            return
+        }
+        // TODO Implement database - remove account by username: remove from all groups
     }
 
     if (!props.profileShowEditScreen) {
@@ -32,7 +40,7 @@ export default function Profile(props) {
                         <button
                             className={BUTTONS.declineButton}
                             onClick={(e) => {
-                                removeAccount(userName)
+                                removeAccount(contextData.username)
                             }}
                         >
                             Remove Account
@@ -68,7 +76,6 @@ export default function Profile(props) {
         return (
             <ProfileEdit
                 profileInfo={profileInfo}
-                setProfileInfo={setProfileInfo}
                 setProfileShowEditScreen={props.setProfileShowEditScreen}
             />
         )
