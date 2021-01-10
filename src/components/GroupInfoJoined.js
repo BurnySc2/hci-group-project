@@ -81,7 +81,7 @@ export default function GroupInfoJoined(props) {
                 </button>
                 <div
                     className={
-                        "self-center text-red-700 text-xl font-extrabold"
+                        "self-center text-3xl font-bold"
                     }
                 >
                     {groupData.title}
