@@ -5,7 +5,7 @@ import {
     exampleGroupData,
     exampleStudyProjects,
 } from "../constants/exampledata"
-import { CONTEXT, ICONS } from "../constants/constants"
+import { CONTEXT } from "../constants/constants"
 import { BUTTONS } from "../css/classes"
 
 export default function GroupInfoJoined(props) {
@@ -40,10 +40,6 @@ export default function GroupInfoJoined(props) {
     let showJoinRequests = (groupId) => {
         props.setHomeDisplay("joinrequests")
         // TODO
-    }
-
-    let getGroupInfo = (groupId) => {
-        // TODO load 'group info'
     }
 
     let editGroup = (groupId) => {

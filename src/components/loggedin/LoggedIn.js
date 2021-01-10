@@ -6,10 +6,7 @@ import GroupCreate from "../GroupCreate"
 import GroupInfoJoined from "../GroupInfoJoined"
 import StudyProjectCreate from "../StudyProjectCreate"
 import StudyProjectInfo from "../StudyProjectInfo"
-import {
-    exampleJoinedGroups,
-    exampleStudyProjects,
-} from "../../constants/exampledata"
+import { exampleJoinedGroups } from "../../constants/exampledata"
 import Profile from "../Profile"
 import Calendar from "./calendar/Calendar"
 import Chat from "../Chat"
@@ -18,7 +15,6 @@ import {
     applyGroupFilter,
     CONTEXT,
     defaultFilter,
-    ICONS,
 } from "../../constants/constants"
 import GroupInfo from "../GroupInfo"
 import GroupJoinRequest from "../GroupJoinRequest"
