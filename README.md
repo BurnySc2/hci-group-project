@@ -48,7 +48,7 @@ In the cog menu the user can change his password, or remove his account.
 
 ## Nav-Bar
 - [X] (simple) Fix the navbar so that the logout button is in the top right
-- (simple) Underline selected Nav-Bar-element
+- [ ] (simple) Underline selected Nav-Bar-element
 
 ## Home screen
 - [X] (simple) Add `GroupInfo.js` which displayed the study group information
@@ -57,12 +57,6 @@ In the cog menu the user can change his password, or remove his account.
 - [x] (moderate) Connect functionality with `neue Gruppe erstellen` button
 - [x] (simple) Create `FilterFunction.js` which contains input text fields
 - [x] (moderate) Connect the filter functions with logic (e.g. when the filter text changes, also update the list of groups that match the criteria)
-
-## Group Search Screen
-- [ ] (moderate) recognize groups that already received a joinrequest
-
-
-
 
 ## Chat screen
 - [X] (simple) On chat-home screen, list the study groups the user is in, together with the last chat message
@@ -98,6 +92,9 @@ In the cog menu the user can change his password, or remove his account.
 - [ ] On log in, verify username and password are correct
 - [ ] When editing a profile, update the information in the database
 - [ ] When removing the account, remove it from the database
+## Group Search Screen
+- [ ] Do not display groups that i already belong to
+- [ ] Recognize groups that already received a joinrequest (and mark them)
 ### Study group database
 - [ ] When a user is logged in and on `Chat` screen, grab information about his study groups
 - [ ] When creating a new study group, add the group to the database
