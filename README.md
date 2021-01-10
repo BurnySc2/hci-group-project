@@ -58,20 +58,20 @@ In the cog menu the user can change his password, or remove his account.
 ## Chat screen
 - [X] (simple) On chat-home screen, list the study groups the user is in, together with the last chat message
 - [x] (simple) `GroupInfoJoinedPreview.js` Group information screen: list all the study projects (scrollbar on overflow), and add a button to create a new study project 
-- [ ] (simple) `StudyProjectInfo.js` display study project information. Allow the modification `StudyProjectEdit.js` and removal of the project
-- [ ] (simple) `GroupCog.js` Add group information that is displayed when the cog wheel is clicked
+- [x] (simple) `StudyProjectInfo.js` display study project information. Allow the modification `StudyProjectEdit.js` and removal of the project
+- [x] (simple) `GroupCog.js` Add group information that is displayed when the cog wheel is clicked
 - [x] (moderate) Add a connection to `StudyProjectCreate` when a new project is being created. Every user is allowed to create a new project.
 - [x] (moderate) From `home` screen, add redirects when clicking on the study group or its chat
 - [x] (moderate) Display the global chat via `Chat.js` where the newest message is shown at the bottom, and a chat input field is displayed at the bottom with a `send message` button
 - [X] (simple) Under group chat, re-use `Chat.js` to display the group chat
-- [ ] (difficult) Add hotkey in `Chat.js` that pressing `enter` will send the chat message
 - [X] (difficult) When sending a message, add it to the list of messages
+- [ ] (difficult) Add hotkey in `Chat.js` that pressing `enter` will send the chat message
 
 ## Calendar
 - [X] (moderate) `Calendar.js` Create the `Wochenansicht` calendar
 - [X] (moderate) Connect buttons to switch to previous and next month
 - [X] (difficult?) From given data, mark study projects in the calendar (@meet time, display the title), projects should only be in calendar after their start date, and before their deadline
-- [ ] (moderate) `Calendar.js` Create the `Monatsansicht` calendar
+- [x] (moderate) `Calendar.js` Create the `Monatsansicht` calendar
 
 ## Profile
 - [x] (simple) `Profile.js` Display a user avatar(?) and user information / description.
