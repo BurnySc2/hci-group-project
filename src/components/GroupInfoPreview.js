@@ -17,7 +17,7 @@ export default function GroupInfoPreview(props) {
                 {group.fieldofstudy}, {group.modules}, {group.memberCount}/
                 {group.memberLimit} Mitglieder
             </div>
-            <div>{group.members}</div>
+            <div>{group.members.join(", ")}</div>
             <div>{group.description}</div>
         </div>
     )

@@ -11,7 +11,7 @@ export let exampleJoinedGroups = [
         modules: "Mensch-Computer-Interaktion",
         memberCount: "3",
         memberLimit: "4",
-        members: "Alice, Bob, Doug",
+        members: ["Alice", "Bob", "Doug"],
         description:
             "Hallo, wir arbeiten an dem Project und benoetigen noch eine Person. Bitte bei Interesse anschreiben.",
         lastchatmessage: {
@@ -30,7 +30,7 @@ export let exampleJoinedGroups = [
         modules: "Software-Technik",
         memberCount: "3",
         memberLimit: "5",
-        members: "Bob, Alice",
+        members: ["Bob", "Alice"],
         description:
             "Hallo, wir arbeiten an dem Project und benoetigen noch eine Person. Bitte bei Interesse anschreiben.",
         lastchatmessage: {
@@ -79,7 +79,7 @@ export let exampleGroupData = {
 
 export let exampleStudyProjects = [
     {
-        id: 0,
+        id: 1,
         projectname: "Abgabeblatt HCI",
         projectdescription: "Something",
         weeklymeetday: moment().weekday(),

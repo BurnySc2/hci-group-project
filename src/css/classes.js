@@ -80,7 +80,7 @@ export let BUTTONS = {
         "self-start m-2 p-2 border-2 border-black rounded hover:bg-yellow-400",
     // Navbar
     navbarButton: "mx-2 my-1 px-2 py-1 rounded hover:bg-yellow-400",
-    logoutButton: "mx-2 px-2 py-1 rounded hover:bg-red-400",
+    logoutButton: "mx-2 my-1 px-2 py-1 rounded hover:bg-red-400",
     // Register and login
     highlightedBox: "bg-gray-500 flex-grow rounded",
     notHighlightedBox: "hover:bg-yellow-400 flex-grow rounded",

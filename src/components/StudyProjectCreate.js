@@ -1,10 +1,12 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { BUTTONS, STUDYPROJECTCREATE } from "../css/classes"
 import moment from "moment"
 import { WEEKDAYS } from "../constants/constants"
+import { exampleStudyProjects } from "../constants/exampledata"
 
 export default function StudyProjectCreate(props) {
     let [newStudyProjectData, setNewStudyProjectData] = useState({
+        id: 1,
         projectname: "",
         projectdescription: "",
         // Get today's weekday
@@ -15,6 +17,17 @@ export default function StudyProjectCreate(props) {
         // as timestamp (integer)
         deadline: Date.now(),
     })
+
+    let getStudyProjectData = (studyProjectId) => {
+        // TODO Get study project data from database via studyproject-id
+        return exampleStudyProjects[0]
+    }
+
+    useEffect(() => {
+        setNewStudyProjectData(
+            getStudyProjectData(props.homeStudyProjectDisplay)
+        )
+    }, [props.homeStudyProjectDisplay])
 
     let changeField = (key, value) => {
         setNewStudyProjectData({ ...newStudyProjectData, [key]: value })
@@ -38,6 +51,27 @@ export default function StudyProjectCreate(props) {
         // Converts timestamp to HH:mm which is required by <input type="time"/>
         return moment(timestamp).format("HH:mm")
     }
+
+    let applyStudyGroupChanges = (studyGroupId, newStudyProjectData) => {
+        props.setHomeDisplay("mygroup")
+        // TODO via database apply new study project information
+    }
+
+    let createNewStudyProject = (groupId, studyProjectData) => {
+        console.log(
+            `Creating new study proejct for id ${props.groupid} with study project data`,
+            studyProjectData
+        )
+        props.setHomeDisplay("mygroup")
+        // TODO via database, create a new study project
+    }
+
+    let cancelButton = () => {
+        props.setHomeDisplay("mygroup")
+    }
+
+    let createGroupButtonVisibility = props.edit ? "hidden" : ""
+    let applyEditGroupButtonVisibility = props.edit ? "" : "hidden"
 
     return (
         <div className={STUDYPROJECTCREATE.background}>
@@ -130,9 +164,9 @@ export default function StudyProjectCreate(props) {
             </div>
             <div className={STUDYPROJECTCREATE.row}>
                 <button
-                    className={BUTTONS.acceptButton}
+                    className={`${BUTTONS.acceptButton} ${createGroupButtonVisibility}`}
                     onClick={(e) => {
-                        props.createNewStudyProject(
+                        createNewStudyProject(
                             props.groupid,
                             newStudyProjectData
                         )
@@ -140,10 +174,22 @@ export default function StudyProjectCreate(props) {
                 >
                     Create New Study Project
                 </button>
+                {/*Only visible when making changes to existing study project*/}
+                <button
+                    className={`${BUTTONS.acceptButton} ${applyEditGroupButtonVisibility}`}
+                    onClick={(e) => {
+                        applyStudyGroupChanges(
+                            props.studyprojectid,
+                            newStudyProjectData
+                        )
+                    }}
+                >
+                    Apply changes
+                </button>
                 <button
                     className={BUTTONS.declineButton}
                     onClick={(e) => {
-                        props.setHomeDisplay("mygroup")
+                        cancelButton()
                     }}
                 >
                     Cancel

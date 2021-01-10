@@ -1,18 +1,50 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { BUTTONS, GROUPCREATE, INPUTFIELD } from "../css/classes"
+import { exampleJoinedGroups } from "../constants/exampledata"
 
 export default function GroupCreate(props) {
     let [newGroupData, setNewGroupData] = useState({
-        groupname: "",
-        fieldofstudy: "computerscience",
-        modulestext: "",
-        groupdescription: "",
-        memberslimit: "",
+        title: "",
+        fieldofstudy: "Informatik",
+        modules: "",
+        description: "",
+        memberLimit: "",
     })
+
+    console.log(newGroupData)
+    let getGroupData = (groupId) => {
+        // TODO via Database get group information via groupId
+        return exampleJoinedGroups[0]
+    }
+
+    useEffect(() => {
+        setNewGroupData(getGroupData(props.groupid))
+    }, [props.groupid])
+
+    let applyGroupChanges = (groupId, newGroupData) => {
+        props.setHomeDisplay(undefined)
+        // TODO via database apply new group information
+    }
+
+    let createNewGroup = (groupData) => {
+        props.setHomeDisplay(undefined)
+        // TODO via database, create a new group
+    }
+
+    let cancelButton = () => {
+        if (props.edit) {
+            props.setHomeDisplay("mygroup")
+        } else {
+            props.setHomeDisplay(undefined)
+        }
+    }
 
     let changeField = (key, value) => {
         setNewGroupData({ ...newGroupData, [key]: value })
     }
+
+    let createGroupButtonVisibility = props.edit ? "hidden" : ""
+    let applyEditGroupButtonVisibility = props.edit ? "" : "hidden"
 
     return (
         <div className={GROUPCREATE.background}>
@@ -22,7 +54,7 @@ export default function GroupCreate(props) {
                 <div className={GROUPCREATE.label}>Group Name</div>
                 <input
                     className={INPUTFIELD.groupCreate}
-                    value={newGroupData.groupname}
+                    value={newGroupData.title}
                     onChange={(e) => changeField("groupname", e.target.value)}
                 />
                 <div className={GROUPCREATE.label}>Field of Study</div>
@@ -35,11 +67,11 @@ export default function GroupCreate(props) {
                         changeField("fieldofstudy", e.target.value)
                     }}
                 >
-                    <option value="computerscience">Computer Science</option>
-                    <option value="maths">Maths</option>
-                    <option value="physics">Physics</option>
-                    <option value="chemistry">Chemistry</option>
-                    <option value="biology">Biology</option>
+                    <option value="Informatik">Computer Science</option>
+                    <option value="Mathematik">Maths</option>
+                    <option value="Physik">Physics</option>
+                    <option value="Chemie">Chemistry</option>
+                    <option value="Biologie">Biology</option>
                 </select>
                 {/* <input
                         placeholder="Informatik"
@@ -50,7 +82,7 @@ export default function GroupCreate(props) {
                     className={INPUTFIELD.groupCreate}
                     style={{ minHeight: "5rem" }}
                     placeholder="HCI, Etech, Programmieren 2"
-                    value={newGroupData.modulestext}
+                    value={newGroupData.modules}
                     onChange={(e) => changeField("modulestext", e.target.value)}
                 />
                 <div className={GROUPCREATE.label}>Group Description</div>
@@ -58,7 +90,7 @@ export default function GroupCreate(props) {
                     className={INPUTFIELD.groupCreate}
                     style={{ minHeight: "5rem" }}
                     placeholder="We are looking for more Computer Science students who want to study for the HCI exam."
-                    value={newGroupData.groupdescription}
+                    value={newGroupData.description}
                     onChange={(e) =>
                         changeField("groupdescription", e.target.value)
                     }
@@ -68,26 +100,34 @@ export default function GroupCreate(props) {
                     type="number"
                     min="1"
                     max="1000"
-                    value={newGroupData.memberslimit}
+                    value={newGroupData.memberLimit}
                     className={INPUTFIELD.groupCreate}
                     onChange={(e) =>
                         changeField("memberslimit", e.target.value)
                     }
                 />
-                {/* </div> */}
             </div>
             <div className={GROUPCREATE.row}>
                 <button
-                    className={BUTTONS.acceptButton}
+                    className={`${BUTTONS.acceptButton} ${createGroupButtonVisibility}`}
                     onClick={(e) => {
-                        props.createNewGroup(newGroupData)
+                        createNewGroup(newGroupData)
                     }}
                 >
                     Create New Group
                 </button>
+                {/*Only visible when making changes to existing group*/}
+                <button
+                    className={`${BUTTONS.acceptButton} ${applyEditGroupButtonVisibility}`}
+                    onClick={(e) => {
+                        applyGroupChanges(props.groupid, newGroupData)
+                    }}
+                >
+                    Apply changes
+                </button>
                 <button
                     className={BUTTONS.declineButton}
-                    onClick={(e) => props.setHomeDisplay(undefined)}
+                    onClick={(e) => cancelButton()}
                 >
                     Cancel
                 </button>
