@@ -41,7 +41,7 @@ export let STUDYPROJECTCREATE = {
 
 export let NAVBAR = {
     total: "flex flex-row justify-between bg-gray-200 w-128",
-    leftSide: "flex flex-row bg-blue-100",
+    leftSide: "flex flex-row rounded",
     rightSide: "flex flex-row",
     button: "px-4 py-2 mx-2 my-1 font-black",
 }
@@ -80,7 +80,7 @@ export let BUTTONS = {
         "self-start m-2 p-2 border-2 border-black rounded hover:bg-yellow-400",
     // Navbar
     navbarButton: "mx-2 my-1 px-2 py-1 rounded hover:bg-yellow-400",
-    logoutButton: "mx-2 my-1 px-2 py-1 rounded hover:bg-red-400",
+    logoutButton: "mx-2 my-1 px-2 py-1 rounded hover:bg-red-600",
     // Register and login
     highlightedBox: "bg-gray-500 flex-grow rounded",
     notHighlightedBox: "hover:bg-yellow-400 flex-grow rounded",

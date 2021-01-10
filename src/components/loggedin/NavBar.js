@@ -7,7 +7,7 @@ export default function Navbar(props) {
         <div className={NAVBAR.total}>
             <div className={NAVBAR.leftSide}>
                 <button
-                    className={BUTTONS.navbarButton}
+                    className={`${BUTTONS.navbarButton} bg-orange-300`}
                     onClick={() => {
                         props.navBarClick("home")
                     }}
@@ -15,7 +15,7 @@ export default function Navbar(props) {
                     Home
                 </button>
                 <button
-                    className={BUTTONS.navbarButton}
+                    className={`${BUTTONS.navbarButton} bg-red-300`}
                     onClick={() => {
                         props.navBarClick("groupsearch")
                     }}
@@ -23,7 +23,7 @@ export default function Navbar(props) {
                     Gruppensuche
                 </button>
                 <button
-                    className={BUTTONS.navbarButton}
+                    className={`${BUTTONS.navbarButton} bg-purple-300`}
                     onClick={() => {
                         props.navBarClick("chat")
                     }}
@@ -31,7 +31,7 @@ export default function Navbar(props) {
                     Chat
                 </button>
                 <button
-                    className={BUTTONS.navbarButton}
+                    className={`${BUTTONS.navbarButton} bg-blue-300`}
                     onClick={() => {
                         props.navBarClick("calendar")
                     }}
@@ -39,7 +39,7 @@ export default function Navbar(props) {
                     Kalender
                 </button>
                 <button
-                    className={BUTTONS.navbarButton}
+                    className={`${BUTTONS.navbarButton} bg-teal-300`}
                     onClick={() => {
                         props.navBarClick("profile")
                     }}
@@ -49,7 +49,7 @@ export default function Navbar(props) {
             </div>
             <div className={NAVBAR.rightSide}>
                 <button
-                    className={BUTTONS.logoutButton}
+                    className={`${BUTTONS.logoutButton} bg-pink-100`}
                     onClick={() => {
                         props.logOutClick()
                     }}
