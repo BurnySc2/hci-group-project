@@ -79,7 +79,13 @@ export default function GroupInfoJoined(props) {
                 >
                     Back
                 </button>
-                <div className={"self-center"}>{groupData.title}</div>
+                <div
+                    className={
+                        "self-center text-red-700 text-xl font-extrabold"
+                    }
+                >
+                    {groupData.title}
+                </div>
                 <div className={"flex flex-row"}>
                     <button
                         className={BUTTONS.editButton}

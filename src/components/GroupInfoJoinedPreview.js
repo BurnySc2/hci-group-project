@@ -33,6 +33,7 @@ export default function GroupInfoJoinedPreview(props) {
                 <div className={"mx-1 self-start"}>{props.groupinfo.title}</div>
                 <ChatMessage
                     data={props.groupinfo.lastchatmessage}
+                    messageColour="text-red-500"
                     displayAsRow
                 />
             </div>

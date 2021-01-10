@@ -4,7 +4,13 @@ import { BUTTONS, NAVBAR } from "../../css/classes"
 export default function Navbar(props) {
     // TODO Underline text to let user know where he currently is
     return (
-        <div className={NAVBAR.total}>
+        <div
+            className={NAVBAR.total}
+            style={{
+                "background-image":
+                    "linear-gradient(to left, rgba(0,0,150,1), rgba(0,0,150,0))",
+            }}
+        >
             <div className={NAVBAR.leftSide}>
                 <button
                     className={`${BUTTONS.navbarButton} bg-orange-300`}

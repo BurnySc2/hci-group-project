@@ -46,14 +46,23 @@ In the cog menu the user can change his password, or remove his account.
 
 # Tasks (TODO list)
 
-## Home screen
+## Nav-Bar
 - [X] (simple) Fix the navbar so that the logout button is in the top right
+- (simple) Underline selected Nav-Bar-element
+
+## Home screen
 - [X] (simple) Add `GroupInfo.js` which displayed the study group information
 - [X] (simple) Add `GroupJoinRequest.js` which displays a submit form to be able to request to join the group
 - [x] (moderate) Add interactivity to the `GroupInfo.js` buttons to get back to the filtered groups, and on `Anfrage senden` get to the `GroupJoinRequest.js` screen
 - [x] (moderate) Connect functionality with `neue Gruppe erstellen` button
 - [x] (simple) Create `FilterFunction.js` which contains input text fields
 - [x] (moderate) Connect the filter functions with logic (e.g. when the filter text changes, also update the list of groups that match the criteria)
+
+## Group Search Screen
+- [ ] (moderate) recognize groups that already received a joinrequest
+
+
+
 
 ## Chat screen
 - [X] (simple) On chat-home screen, list the study groups the user is in, together with the last chat message

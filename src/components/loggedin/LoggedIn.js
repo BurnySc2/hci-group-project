@@ -286,7 +286,7 @@ export default function LoggedIn(props) {
         )
     }
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col bg-blue-300">
             <NavBar navBarClick={navBarClick} logOutClick={props.logOutClick} />
             {subPage}
         </div>

@@ -15,9 +15,12 @@ export default function ChatMessage(props) {
     let positioningCss = props.messageByMe ? "self-end" : "self-start"
     let messageAuthor = props.messageByMe ? "mir" : props.data.name
     let displayAsRowCss = props.displayAsRow ? "flex flex-row" : "flex flex-col"
+    let messageColour = props.messageColour ? props.messageColour : ""
     return (
         <div className={displayAsRowCss}>
-            <div className={`${positioningCss} font-black mx-1`}>
+            <div
+                className={`${positioningCss} ${messageColour} font-black mx-1`}
+            >
                 {props.data.text}
             </div>
             {/*TODO Check if time lies in the past, if yes: add date*/}
