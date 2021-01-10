@@ -8,6 +8,8 @@ export default function GroupInfo(props) {
     let groupData =
         props.groupData !== undefined ? props.groupData : exampleJoinGroupData
 
+    // TODO Reuse this component to display information about the group
+
     return (
         <div className="flex flex-col">
             <div className="flex flex-row justify-start">

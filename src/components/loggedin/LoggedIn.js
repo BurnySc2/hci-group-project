@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import NavBar from "./NavBar"
 import FilterFunction from "../FilterFunction"
 import GroupInfoJoinedPreview from "../GroupInfoJoinedPreview"
@@ -6,32 +6,35 @@ import GroupCreate from "../GroupCreate"
 import GroupInfoJoined from "../GroupInfoJoined"
 import StudyProjectCreate from "../StudyProjectCreate"
 import StudyProjectInfo from "../StudyProjectInfo"
-import {
-    exampleJoinedGroups,
-    exampleStudyProjects,
-} from "../../constants/exampledata"
+import { exampleJoinedGroups } from "../../constants/exampledata"
 import Profile from "../Profile"
 import Calendar from "./calendar/Calendar"
 import Chat from "../Chat"
 import GroupInfoPreview from "../GroupInfoPreview"
 import {
     applyGroupFilter,
+    CONTEXT,
     defaultFilter,
-    ICONS,
 } from "../../constants/constants"
 import GroupInfo from "../GroupInfo"
 import GroupJoinRequest from "../GroupJoinRequest"
 import { BUTTONS, SECTIONS } from "../../css/classes"
+import JoinRequests from "../JoinRequests"
 
 export default function LoggedIn(props) {
+    // eslint-disable-next-line no-unused-vars
+    let { contextData, setContextData } = useContext(CONTEXT)
+
     // Zustand auf der website: wo man sich befindet
     // One of: home, groupsearch, chat, calendar, profile
     let [display, setDisplay] = useState("home")
     // If in "home" category, display the group once the user clicks on it
-    // One of: creategroup, mygroup, createstudyproject, studyproject
+    // One of: creategroup, mygroup, editgroup, joinrequests, createstudyproject, studyproject, studyprojectedit
     let [homeDisplay, setHomeDisplay] = useState(undefined)
+    // Which group to display, group-id
     let [homeGroupDisplay, setHomeGroupDisplay] = useState(undefined)
     // eslint-disable-next-line no-unused-vars
+    // Which studyproject to display, studyproject-id
     let [homeStudyProjectDisplay, setHomeStudyProjectDisplay] = useState(
         undefined
     )
@@ -57,6 +60,16 @@ export default function LoggedIn(props) {
         setProfileShowEditScreen(false)
     }
 
+    let getAllJoinedGroups = (userName) => {
+        // TODO Connect with database and return all groups the user is in
+        return exampleJoinedGroups
+    }
+
+    let getAllGroups = (userName) => {
+        // TODO Connect with database and return all groups the user is not in and has not sent a join request
+        return exampleJoinedGroups
+    }
+
     let createNewGroup = (groupData) => {
         // TODO Add data to database, verify that it doesnt exist etc.
         console.log("Creating new group with data:", groupData)
@@ -65,19 +78,10 @@ export default function LoggedIn(props) {
         navBarClick("home")
     }
 
-    let createNewStudyProject = (groupid, studyProjectData) => {
-        console.log(
-            `Creating new study proejct for id ${groupid} with study project data`,
-            studyProjectData
-        )
+    let removeStudyProject = (groupId, studyProjectId) => {
+        // TODO via database remove study project from group
         setHomeDisplay("mygroup")
     }
-
-    // Example groups the user is in, assuming the user is "Alice"
-    let groups = exampleJoinedGroups
-
-    // Example study projects
-    let studyProjects = exampleStudyProjects
 
     let subPage = undefined
     // HOME SCREEN
@@ -95,20 +99,24 @@ export default function LoggedIn(props) {
                     </button>
                     <div className={"grid grid-cols-1"}>
                         {/*TODO get all groups the logged in user is in, and then give the information towards the components via props*/}
-                        {groups.map((group) => {
-                            return (
-                                <button
-                                    key={group.id}
-                                    className={BUTTONS.editButton}
-                                    onClick={(e) => {
-                                        setHomeDisplay("mygroup")
-                                        setHomeGroupDisplay(group.id)
-                                    }}
-                                >
-                                    <GroupInfoJoinedPreview groupinfo={group} />
-                                </button>
-                            )
-                        })}
+                        {getAllJoinedGroups(contextData.username).map(
+                            (group) => {
+                                return (
+                                    <button
+                                        key={group.id}
+                                        className={BUTTONS.editButton}
+                                        onClick={(e) => {
+                                            setHomeDisplay("mygroup")
+                                            setHomeGroupDisplay(group.id)
+                                        }}
+                                    >
+                                        <GroupInfoJoinedPreview
+                                            groupinfo={group}
+                                        />
+                                    </button>
+                                )
+                            }
+                        )}
                     </div>
                 </div>
             )
@@ -125,17 +133,32 @@ export default function LoggedIn(props) {
                 <GroupInfoJoined
                     groupid={homeGroupDisplay}
                     setHomeDisplay={setHomeDisplay}
+                    setHomeGroupDisplay={setHomeGroupDisplay}
                     setHomeStudyProjectDisplay={setHomeStudyProjectDisplay}
-                    studyProjects={studyProjects}
+                />
+            )
+        } else if (homeDisplay === "groupinfo") {
+            subPage = <div>TODO display short info about this group</div>
+        } else if (homeDisplay === "editgroup") {
+            subPage = (
+                <GroupCreate
+                    edit
+                    groupid={homeGroupDisplay}
+                    setHomeDisplay={setHomeDisplay}
+                />
+            )
+        } else if (homeDisplay === "joinrequests") {
+            subPage = (
+                <JoinRequests
+                    groupid={homeGroupDisplay}
+                    setHomeDisplay={setHomeDisplay}
                 />
             )
         } else if (homeDisplay === "createstudyproject") {
-            // TODO Load database data, then display the group
             subPage = (
                 <StudyProjectCreate
                     groupid={homeGroupDisplay}
                     setHomeDisplay={setHomeDisplay}
-                    createNewStudyProject={createNewStudyProject}
                 />
             )
         } else if (homeDisplay === "studyproject") {
@@ -151,11 +174,43 @@ export default function LoggedIn(props) {
                         >
                             Back
                         </button>
-
-                        <button className={"text-4xl"}>{ICONS.GEAR}</button>
+                        <div className={"flex flex-row"}>
+                            <button
+                                className={BUTTONS.editButton}
+                                onClick={(e) => {
+                                    // Go into edit study project mode
+                                    setHomeDisplay("studyprojectedit")
+                                }}
+                            >
+                                Edit Study Project
+                            </button>
+                            <button
+                                className={BUTTONS.declineButton}
+                                onClick={(e) => {
+                                    removeStudyProject(
+                                        homeGroupDisplay,
+                                        homeStudyProjectDisplay
+                                    )
+                                }}
+                            >
+                                Remove Study Project
+                            </button>
+                        </div>
                     </div>
-                    <StudyProjectInfo />
+                    <StudyProjectInfo
+                        homeStudyProjectDisplay={homeStudyProjectDisplay}
+                    />
                 </div>
+            )
+        } else if (homeDisplay === "studyprojectedit") {
+            // TODO add project info through props.projectInfo")
+            subPage = (
+                <StudyProjectCreate
+                    groupid={homeGroupDisplay}
+                    setHomeDisplay={setHomeDisplay}
+                    studyprojectid={homeStudyProjectDisplay}
+                    edit
+                />
             )
         }
     }
@@ -174,7 +229,7 @@ export default function LoggedIn(props) {
                         />
                     </div>
                     <div className={"flex flex-col"}>
-                        {groups
+                        {getAllGroups(contextData.username)
                             .filter((group) => {
                                 return applyGroupFilter(group, filterSettings)
                             })

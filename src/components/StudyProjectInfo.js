@@ -3,10 +3,12 @@ import { exampleStudyProjects } from "../constants/exampledata"
 import moment from "moment"
 
 export default function StudyProjectInfo(props) {
-    let projectInfo =
-        props.projectInfo !== undefined
-            ? props.projectInfo
-            : exampleStudyProjects[0]
+    let getStudyProjectInfo = (studyProjectId) => {
+        // TODO Return the study project info from id
+        return exampleStudyProjects[0]
+    }
+
+    let projectInfo = getStudyProjectInfo(props.homeStudyProjectDisplay)
 
     let meetDay = moment().weekday(projectInfo.weeklymeetday)
     let meetStartTime = moment(projectInfo.weeklymeetstarttime).format("HH:mm")
