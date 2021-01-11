@@ -97,26 +97,32 @@ export default function LoggedIn(props) {
                     >
                         + neue Gruppe erstellen
                     </button>
-                    <div className={"grid grid-cols-1"}>
-                        {/*TODO get all groups the logged in user is in, and then give the information towards the components via props*/}
-                        {getAllJoinedGroups(contextData.username).map(
-                            (group) => {
-                                return (
-                                    <button
-                                        key={group.id}
-                                        className={BUTTONS.editButton}
-                                        onClick={(e) => {
-                                            setHomeDisplay("mygroup")
-                                            setHomeGroupDisplay(group.id)
-                                        }}
-                                    >
-                                        <GroupInfoJoinedPreview
-                                            groupinfo={group}
-                                        />
-                                    </button>
-                                )
+                    <div className={"grid grid-cols-6 gap-4"}>
+                        <div
+                            className={
+                                "col-start-2 col-span-4 grid grid-cols-1"
                             }
-                        )}
+                        >
+                            {/*TODO get all groups the logged in user is in, and then give the information towards the components via props*/}
+                            {getAllJoinedGroups(contextData.username).map(
+                                (group) => {
+                                    return (
+                                        <button
+                                            key={group.id}
+                                            className={BUTTONS.editButton}
+                                            onClick={(e) => {
+                                                setHomeDisplay("mygroup")
+                                                setHomeGroupDisplay(group.id)
+                                            }}
+                                        >
+                                            <GroupInfoJoinedPreview
+                                                groupinfo={group}
+                                            />
+                                        </button>
+                                    )
+                                }
+                            )}
+                        </div>
                     </div>
                 </div>
             )
