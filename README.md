@@ -68,6 +68,7 @@ In the cog menu the user can change his password, or remove his account.
 - [x] (moderate) Display the global chat via `Chat.js` where the newest message is shown at the bottom, and a chat input field is displayed at the bottom with a `send message` button
 - [X] (simple) Under group chat, re-use `Chat.js` to display the group chat
 - [X] (difficult) When sending a message, add it to the list of messages
+- [ ] (simple) Add warning to the user that the chat is a global chat and everyone can read this message
 - [ ] (difficult) Add hotkey in `Chat.js` that pressing `enter` will send the chat message
 
 ## Calendar
