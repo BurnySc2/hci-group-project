@@ -2,7 +2,7 @@ import React from "react"
 import { BUTTONS, NAVBAR } from "../../css/classes"
 
 export default function Navbar(props) {
-    // TODO Underline text to let user know where he currently is
+    let selectedClass = "border-b-4 border-black focus:outline-none"
     return (
         <div
             className={NAVBAR.total}
@@ -13,7 +13,11 @@ export default function Navbar(props) {
         >
             <div className={NAVBAR.leftSide}>
                 <button
-                    className={`${BUTTONS.navbarButton} bg-orange-300`}
+                    className={`${BUTTONS.navbarButton} bg-orange-300 ${
+                        props.navBarLocation === "home"
+                            ? `${selectedClass}`
+                            : ""
+                    }`}
                     onClick={() => {
                         props.navBarClick("home")
                     }}
@@ -21,7 +25,11 @@ export default function Navbar(props) {
                     Home
                 </button>
                 <button
-                    className={`${BUTTONS.navbarButton} bg-red-300`}
+                    className={`${BUTTONS.navbarButton} bg-red-300 ${
+                        props.navBarLocation === "groupsearch"
+                            ? `${selectedClass}`
+                            : ""
+                    }`}
                     onClick={() => {
                         props.navBarClick("groupsearch")
                     }}
@@ -29,7 +37,11 @@ export default function Navbar(props) {
                     Gruppensuche
                 </button>
                 <button
-                    className={`${BUTTONS.navbarButton} bg-purple-300`}
+                    className={`${BUTTONS.navbarButton} bg-purple-300 ${
+                        props.navBarLocation === "chat"
+                            ? `${selectedClass}`
+                            : ""
+                    }`}
                     onClick={() => {
                         props.navBarClick("chat")
                     }}
@@ -37,7 +49,11 @@ export default function Navbar(props) {
                     Chat
                 </button>
                 <button
-                    className={`${BUTTONS.navbarButton} bg-blue-300`}
+                    className={`${BUTTONS.navbarButton} bg-blue-300 ${
+                        props.navBarLocation === "calendar"
+                            ? `${selectedClass}`
+                            : ""
+                    }`}
                     onClick={() => {
                         props.navBarClick("calendar")
                     }}
@@ -45,7 +61,11 @@ export default function Navbar(props) {
                     Kalender
                 </button>
                 <button
-                    className={`${BUTTONS.navbarButton} bg-teal-300`}
+                    className={`${BUTTONS.navbarButton} bg-teal-300 ${
+                        props.navBarLocation === "profile"
+                            ? `${selectedClass}`
+                            : ""
+                    }`}
                     onClick={() => {
                         props.navBarClick("profile")
                     }}

@@ -6,7 +6,9 @@ const cloneDeep = require("clone-deep")
 
 export default function Chat(props) {
     /*
-    props: chatMessages: [
+    props:
+        global: boolean
+        chatMessages: [
             {
                 name: "Paul",
                 text: "Hallo wie gehts euch?",
@@ -59,7 +61,11 @@ export default function Chat(props) {
                 <input
                     className={INPUTFIELD.chat}
                     type="text"
-                    placeholder={"Message"}
+                    placeholder={
+                        props.global
+                            ? "Send global message"
+                            : "Send message to the group"
+                    }
                     value={newMessageText}
                     onChange={(e) => {
                         setNewMessageText(e.target.value)

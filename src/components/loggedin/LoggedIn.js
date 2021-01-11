@@ -271,7 +271,14 @@ export default function LoggedIn(props) {
     }
     // GLOBAL CHAT SCREEN
     else if (display === "chat") {
-        subPage = <Chat />
+        subPage = (
+            <div className={"flex flex-col my-2"}>
+                <div className={"self-center font-heavy text-2xl"}>
+                    Globaler Chat
+                </div>
+                <Chat global />
+            </div>
+        )
     }
     // CALENDAR SCREEN
     else if (display === "calendar") {
@@ -293,7 +300,11 @@ export default function LoggedIn(props) {
     }
     return (
         <div className="flex flex-col bg-blue-300">
-            <NavBar navBarClick={navBarClick} logOutClick={props.logOutClick} />
+            <NavBar
+                navBarLocation={display}
+                navBarClick={navBarClick}
+                logOutClick={props.logOutClick}
+            />
             {subPage}
         </div>
     )
