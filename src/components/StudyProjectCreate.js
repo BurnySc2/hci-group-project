@@ -20,13 +20,19 @@ export default function StudyProjectCreate(props) {
 
     let getStudyProjectData = (studyProjectId) => {
         // TODO Get study project data from database via studyproject-id
+        if (!studyProjectId) {
+            return undefined
+        }
         return exampleStudyProjects[0]
     }
 
     useEffect(() => {
-        setNewStudyProjectData(
-            getStudyProjectData(props.homeStudyProjectDisplay)
+        let studyProjectData = getStudyProjectData(
+            props.homeStudyProjectDisplay
         )
+        if (studyProjectData) {
+            setNewStudyProjectData(studyProjectData)
+        }
     }, [props.homeStudyProjectDisplay])
 
     let changeField = (key, value) => {

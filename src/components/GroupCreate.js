@@ -11,14 +11,19 @@ export default function GroupCreate(props) {
         memberLimit: "",
     })
 
-    console.log(newGroupData)
     let getGroupData = (groupId) => {
         // TODO via Database get group information via groupId
+        if (!groupId) {
+            return undefined
+        }
         return exampleJoinedGroups[0]
     }
 
     useEffect(() => {
-        setNewGroupData(getGroupData(props.groupid))
+        let groupData = getGroupData(props.groupid)
+        if (groupData) {
+            setNewGroupData()
+        }
     }, [props.groupid])
 
     let applyGroupChanges = (groupId, newGroupData) => {
