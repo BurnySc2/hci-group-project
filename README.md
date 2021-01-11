@@ -48,7 +48,7 @@ In the cog menu the user can change his password, or remove his account.
 
 ## Nav-Bar
 - [X] (simple) Fix the navbar so that the logout button is in the top right
-- [ ] (simple) Underline selected Nav-Bar-element
+- [X] (simple) Underline selected Nav-Bar-element
 
 ## Home screen
 - [X] (simple) Add `GroupInfo.js` which displayed the study group information
@@ -68,8 +68,8 @@ In the cog menu the user can change his password, or remove his account.
 - [x] (moderate) Display the global chat via `Chat.js` where the newest message is shown at the bottom, and a chat input field is displayed at the bottom with a `send message` button
 - [X] (simple) Under group chat, re-use `Chat.js` to display the group chat
 - [X] (difficult) When sending a message, add it to the list of messages
+- [X] (difficult) Add hotkey in `Chat.js` that pressing `enter` will send the chat message
 - [ ] (simple) Add warning to the user that the chat is a global chat and everyone can read this message
-- [ ] (difficult) Add hotkey in `Chat.js` that pressing `enter` will send the chat message
 
 ## Calendar
 - [X] (moderate) `Calendar.js` Create the `Wochenansicht` calendar

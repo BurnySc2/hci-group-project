@@ -26,7 +26,8 @@ export let GROUPCREATE = {
 }
 
 export let STUDYPROJECTCREATE = {
-    background: "flex flex-col bg-gray-200 p-2 border-4 border-black rounded",
+    background:
+        "flex flex-col bg-gray-200 m-2 p-2 border-4 border-black rounded",
     grid: "justify-self-auto grid grid-cols-2",
     titleBar: "self-center font-black",
     // TODO Left align? right align?
