@@ -22,12 +22,41 @@ export default function Profile(props) {
     }
 
     if (!props.profileShowEditScreen) {
-        let mycss = "m-auto"
+        let mycss = "mr pl-4"
         let containercss = "flex flex-col"
 
         return (
             <div>
-                <div className={"flex flex-row justify-end"}>
+                <div className={"flex flex-row py-8 justify-between"}>
+                    <div className={"flex flex-row py-8 justify-start"}>
+                        <img
+                            className={mycss}
+                            src={[profileInfo.profilePicLink]}
+                            alt="Profile pic"
+                        />
+                        <div className={containercss}>
+                            <div className={mycss}>
+                                Name: {profileInfo.name}
+                            </div>
+                            <div className={mycss}>
+                                {profileInfo.degreecourse},{" "}
+                                {profileInfo.semester}. Semester
+                            </div>
+                            <div className={mycss}>
+                                Erreichbar unter: {profileInfo.connections}
+                            </div>
+
+                            {/*TODOZeilenumbruch einfügen*/}
+                            <div className={mycss}>
+                                Ich belege dieses Semester folgende Module:{" "}
+                                {profileInfo.moduls}
+                            </div>
+                            <div className={mycss}>
+                                {profileInfo.description}
+                            </div>
+                            <div className={mycss}>{profileInfo.hobbies}</div>
+                        </div>
+                    </div>
                     <div className={"flex flex-col m-2 p-2"}>
                         <button
                             className={BUTTONS.editButton}
@@ -46,29 +75,6 @@ export default function Profile(props) {
                             Remove Account
                         </button>
                     </div>
-                </div>
-                <img
-                    className={mycss}
-                    src={[profileInfo.profilePicLink]}
-                    alt="Profile pic"
-                />
-                <div className={containercss}>
-                    <div className={mycss}>Name: {profileInfo.name}</div>
-                    <div className={mycss}>
-                        {profileInfo.degreecourse}, {profileInfo.semester}.
-                        Semester
-                    </div>
-                    <div className={mycss}>
-                        Erreichbar unter: {profileInfo.connections}
-                    </div>
-
-                    {/*TODOZeilenumbruch einfügen*/}
-                    <div className={mycss}>
-                        Ich belege dieses Semester folgende Module:{" "}
-                        {profileInfo.moduls}
-                    </div>
-                    <div className={mycss}>{profileInfo.description}</div>
-                    <div className={mycss}>{profileInfo.hobbies}</div>
                 </div>
             </div>
         )
