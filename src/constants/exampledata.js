@@ -28,7 +28,7 @@ export let exampleJoinedGroups = [
         createdDate: moment("2020-12-10").valueOf(),
         fieldofstudy: "Informatik",
         modules: "Software-Technik",
-        memberCount: "3",
+        memberCount: "2",
         memberLimit: "5",
         members: ["Bob", "Alice"],
         description:

@@ -33,7 +33,6 @@ export default function LoggedIn(props) {
     let [homeDisplay, setHomeDisplay] = useState(undefined)
     // Which group to display, group-id
     let [homeGroupDisplay, setHomeGroupDisplay] = useState(undefined)
-    // eslint-disable-next-line no-unused-vars
     // Which studyproject to display, studyproject-id
     let [homeStudyProjectDisplay, setHomeStudyProjectDisplay] = useState(
         undefined
