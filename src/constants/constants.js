@@ -77,9 +77,12 @@ export let databaseDefaultUserData = {
     email: "",
     username: "",
     password: "",
+    groups: [],
 }
 
 export let databaseDefaultProfileData = {
+    username: "",
+    email: "",
     profilePicLink: "https://i.imgur.com/9BiQit3.png",
     name: "",
     degreecourse: "",
@@ -102,7 +105,18 @@ export let databaseDefaultGroupData = {
     memberLimit: "4",
     members: [],
     description: "",
-    chat: [],
+    groupProjects: [],
+    chatMessages: [],
+}
+
+export let databaseDefaultStudyProjectData = {
+    id: 1,
+    projectname: "Abgabeblatt HCI",
+    projectdescription: "Something",
+    weeklymeetday: moment().weekday(),
+    weeklymeetstarttime: Date.now(),
+    weeklymeetendtime: Date.now() + 2 * 60 * 60 * 1000,
+    deadline: moment().add(5, "days").valueOf(),
 }
 
 export let databaseNames = {
@@ -146,7 +160,7 @@ export let fetchFunctions = {
             headers: {
                 Authorization: "Basic " + btoa("admin:admin"),
             },
-            method: "HEAD",
+            method: "GET",
         }
         let response = await fetch(
             databaseAddress + dbName + "/",
@@ -167,11 +181,31 @@ export let fetchFunctions = {
             databaseAddress + dbName + "/",
             requestOptions
         )
-        return response.ok
+        let responseData = await response.json()
+        return { response: response.status, data: responseData }
+    },
+    updateDatabaseEntry: async (dbName, data, id, revision) => {
+        const requestOptions = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Basic " + btoa("admin:admin"),
+            },
+            method: "PUT",
+            body: JSON.stringify({
+                ...data,
+                _rev: revision,
+            }),
+        }
+        let response = await fetch(
+            databaseAddress + dbName + "/" + id,
+            requestOptions
+        )
+        let responseData = await response.json()
+        return { response: response.status, data: responseData }
     },
     findDatabaseEntry: async (dbName, selector) => {
         // return undefined if 0 entries found
-        // return first entry if entry is found
+        // return first entry if anything is found
         /*
         Return format:
         {
@@ -207,9 +241,45 @@ export let fetchFunctions = {
         }
     },
     searchDatabaseEntry: async (dbName, selector) => {
-        // return all results
+        // return all possible results
+        const requestOptions = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Basic " + btoa("admin:admin"),
+            },
+            method: "POST",
+            body: JSON.stringify(selector),
+        }
+        let response = await fetch(
+            databaseAddress + dbName + "/_find",
+            requestOptions
+        )
+        if (response.ok) {
+            let data = await response.json()
+            return {
+                response: response.status,
+                data: data.docs,
+            }
+        }
+        return {
+            response: response.status,
+            data: [],
+        }
     },
-    deleteDatabaseEntry: async (dbName, id, revision) => {},
+    deleteDatabaseEntry: async (dbName, id, revision) => {
+        const requestOptions = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Basic " + btoa("admin:admin"),
+            },
+            method: "DELETE",
+        }
+        let response = await fetch(
+            databaseAddress + dbName + "/" + id + "?rev=" + revision,
+            requestOptions
+        )
+        return response.status
+    },
 }
 
 export let ICONS = {

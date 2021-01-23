@@ -41,9 +41,8 @@ export default function Register(props) {
             return
         }
 
-        // Check if db exists
+        // If not exists, create db
         if (!(await fetchFunctions.checkIfDatabseExists(dbName))) {
-            // If not exists, create db
             await fetchFunctions.createDatabase(dbName)
         }
 
@@ -70,7 +69,13 @@ export default function Register(props) {
         }
 
         // Add username / email combination to database
-        await fetchFunctions.addDatabaseEntry(dbName, {
+        await fetchFunctions.addDatabaseEntry(databaseNames.profiles, {
+            ...databaseDefaultUserData,
+            email: email,
+            username: username,
+        })
+        // Store password in .users database
+        await fetchFunctions.addDatabaseEntry(databaseNames.users, {
             ...databaseDefaultUserData,
             email: email,
             username: username,

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import NavBar from "./NavBar"
 import FilterFunction from "../FilterFunction"
 import GroupInfoJoinedPreview from "../GroupInfoJoinedPreview"
@@ -14,7 +14,9 @@ import GroupInfoPreview from "../GroupInfoPreview"
 import {
     applyGroupFilter,
     CONTEXT,
+    databaseNames,
     defaultFilter,
+    fetchFunctions,
 } from "../../constants/constants"
 import GroupInfo from "../GroupInfo"
 import GroupJoinRequest from "../GroupJoinRequest"
@@ -37,12 +39,15 @@ export default function LoggedIn(props) {
     let [homeStudyProjectDisplay, setHomeStudyProjectDisplay] = useState(
         undefined
     )
+    let [joinedGroups, setJoinedGroups] = useState([])
     // Group search screen
     let [filterSettings, setFilterSettings] = useState(defaultFilter)
     let [groupSearchViewGroup, setGroupSearchViewGroup] = useState(undefined)
     let [groupSearchRequestJoin, setGroupSearchRequestJoin] = useState(
         undefined
     )
+    // eslint-disable-next-line no-unused-vars
+    let [allGroups, setAllGroups] = useState([])
     // Calendar screen
     let [calendarWeekView, setCalendarWeekView] = useState(false)
     // Profile screen
@@ -59,21 +64,57 @@ export default function LoggedIn(props) {
         setProfileShowEditScreen(false)
     }
 
-    let getAllJoinedGroups = (userName) => {
+    useEffect(() => {
+        getAllJoinedGroups(contextData.username)
+        getAllGroups(contextData.username)
+    }, [contextData])
+
+    let getAllJoinedGroups = async (userName) => {
         // TODO Connect with database and return all groups the user is in
-        return exampleJoinedGroups
+        if (!userName) {
+            setJoinedGroups(exampleJoinedGroups)
+        }
+
+        let response = await fetchFunctions.findDatabaseEntry(
+            databaseNames.users,
+            { selector: { username: userName } }
+        )
+
+        if (response.data.groups.length === 0) {
+            // User is in no group
+            setJoinedGroups([])
+            return
+        }
+        let results = await fetchFunctions.searchDatabaseEntry(
+            databaseNames.groups,
+            {
+                selector: {
+                    $or: response.data.groups.map((i) => {
+                        return { _id: i }
+                    }),
+                },
+            }
+        )
+        console.log(results)
+        setJoinedGroups(results.data)
     }
 
-    let getAllGroups = (userName) => {
+    let getAllGroups = async (userName) => {
         // TODO Connect with database and return all groups the user is not in and has not sent a join request
-        return exampleJoinedGroups
+        if (!userName) {
+            return exampleJoinedGroups
+        }
+
+        return []
     }
 
-    let createNewGroup = (groupData) => {
+    let createNewGroup = async (groupData) => {
         // TODO Add data to database, verify that it doesnt exist etc.
         console.log("Creating new group with data:", groupData)
         // Redirect to "home" screen
         // TODO load newly created group
+        await getAllJoinedGroups(contextData.username)
+
         navBarClick("home")
     }
 
@@ -103,24 +144,23 @@ export default function LoggedIn(props) {
                             }
                         >
                             {/*TODO get all groups the logged in user is in, and then give the information towards the components via props*/}
-                            {getAllJoinedGroups(contextData.username).map(
-                                (group) => {
-                                    return (
-                                        <button
-                                            key={group.id}
-                                            className={BUTTONS.editButton}
-                                            onClick={(e) => {
-                                                setHomeDisplay("mygroup")
-                                                setHomeGroupDisplay(group.id)
-                                            }}
-                                        >
-                                            <GroupInfoJoinedPreview
-                                                groupinfo={group}
-                                            />
-                                        </button>
-                                    )
-                                }
-                            )}
+                            {joinedGroups.map((group) => {
+                                console.log(group)
+                                return (
+                                    <button
+                                        key={group._id}
+                                        className={BUTTONS.editButton}
+                                        onClick={(e) => {
+                                            setHomeDisplay("mygroup")
+                                            setHomeGroupDisplay(group._id)
+                                        }}
+                                    >
+                                        <GroupInfoJoinedPreview
+                                            groupinfo={group}
+                                        />
+                                    </button>
+                                )
+                            })}
                         </div>
                     </div>
                 </div>
@@ -234,7 +274,7 @@ export default function LoggedIn(props) {
                         />
                     </div>
                     <div className={"flex flex-col"}>
-                        {getAllGroups(contextData.username)
+                        {allGroups
                             .filter((group) => {
                                 return applyGroupFilter(group, filterSettings)
                             })

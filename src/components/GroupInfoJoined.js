@@ -1,11 +1,7 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import Chat from "./Chat"
 import StudyProjectPreview from "./StudyProjectPreview"
-import {
-    exampleGroupData,
-    exampleStudyProjects,
-} from "../constants/exampledata"
-import { CONTEXT } from "../constants/constants"
+import { CONTEXT, databaseNames, fetchFunctions } from "../constants/constants"
 import { BUTTONS } from "../css/classes"
 
 export default function GroupInfoJoined(props) {
@@ -27,14 +23,19 @@ export default function GroupInfoJoined(props) {
     // eslint-disable-next-line no-unused-vars
     let { contextData, setContextData } = useContext(CONTEXT)
 
-    let getGroupData = (groupId) => {
-        // TODO get group information from database, e.g. member count (leave and delete group button)
-        return exampleGroupData
-    }
+    let [groupData, setGroupData] = useState({})
+    let [studyProjects, setStudyProjects] = useState([])
+    console.log(studyProjects)
 
-    let getStudyProjects = (groupId) => {
-        // TODO Get all the study projects from the group id
-        return exampleStudyProjects
+    let getGroupData = async (groupId) => {
+        let response = await fetchFunctions.findDatabaseEntry(
+            databaseNames.groups,
+            { selector: { _id: groupId } }
+        )
+        console.log(response)
+        setGroupData(response.data)
+        console.log(response.data)
+        setStudyProjects(response.data.groupProjects)
     }
 
     let showJoinRequests = (groupId) => {
@@ -58,11 +59,9 @@ export default function GroupInfoJoined(props) {
         // TODO Database interaction for group deletion
     }
 
-    // If props.studyProjects not available: use a basic example
-    let studyProjects = getStudyProjects(props.groupid)
-
-    // TODO Get database entry by groupid
-    let groupData = getGroupData(props.groupid)
+    useEffect(() => {
+        getGroupData(props.groupid)
+    }, [props.groupid])
 
     // "Remove group" button is only available if membercount is more than 1
     let leaveGroupButtonCss = groupData.memberCount !== "1" ? "" : "hidden"
@@ -143,11 +142,11 @@ export default function GroupInfoJoined(props) {
                         return (
                             <button
                                 className={BUTTONS.editButton}
-                                key={projectData.id}
+                                key={projectData._id}
                                 onClick={(e) => {
                                     props.setHomeDisplay("studyproject")
                                     props.setHomeStudyProjectDisplay(
-                                        projectData.id
+                                        projectData._id
                                     )
                                 }}
                             >

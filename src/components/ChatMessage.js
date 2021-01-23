@@ -12,6 +12,9 @@ export default function ChatMessage(props) {
         }
     }
      */
+    if (!props.data) {
+        return <div></div>
+    }
     let positioningCss = props.messageByMe ? "self-end" : "self-start"
     let messageAuthor = props.messageByMe ? "mir" : props.data.name
     let displayAsRowCss = props.displayAsRow ? "flex flex-row" : "flex flex-col"

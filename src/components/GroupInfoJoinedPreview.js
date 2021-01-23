@@ -32,7 +32,11 @@ export default function GroupInfoJoinedPreview(props) {
             <div className={"flex flex-col"}>
                 <div className={"mx-1 self-start"}>{props.groupinfo.title}</div>
                 <ChatMessage
-                    data={props.groupinfo.lastchatmessage}
+                    data={
+                        props.groupinfo.chatMessages[
+                            props.groupinfo.chatMessages.length - 1
+                        ]
+                    }
                     messageColour="text-red-500"
                     displayAsRow
                 />
