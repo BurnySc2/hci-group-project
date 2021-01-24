@@ -60,7 +60,7 @@ export default function GroupCreate(props) {
                 <input
                     className={INPUTFIELD.groupCreate}
                     value={newGroupData.title}
-                    onChange={(e) => changeField("groupname", e.target.value)}
+                    onChange={(e) => changeField("title", e.target.value)}
                 />
                 <div className={GROUPCREATE.label}>Field of Study</div>
                 <select
@@ -88,7 +88,7 @@ export default function GroupCreate(props) {
                     style={{ minHeight: "5rem" }}
                     placeholder="HCI, Etech, Programmieren 2"
                     value={newGroupData.modules}
-                    onChange={(e) => changeField("modulestext", e.target.value)}
+                    onChange={(e) => changeField("modules", e.target.value)}
                 />
                 <div className={GROUPCREATE.label}>Group Description</div>
                 <textarea
@@ -96,9 +96,7 @@ export default function GroupCreate(props) {
                     style={{ minHeight: "5rem" }}
                     placeholder="We are looking for more Computer Science students who want to study for the HCI exam."
                     value={newGroupData.description}
-                    onChange={(e) =>
-                        changeField("groupdescription", e.target.value)
-                    }
+                    onChange={(e) => changeField("description", e.target.value)}
                 />
                 <div className={GROUPCREATE.label}>Members Limit</div>
                 <input
@@ -107,9 +105,7 @@ export default function GroupCreate(props) {
                     max="1000"
                     value={newGroupData.memberLimit}
                     className={INPUTFIELD.groupCreate}
-                    onChange={(e) =>
-                        changeField("memberslimit", e.target.value)
-                    }
+                    onChange={(e) => changeField("memberLimit", e.target.value)}
                 />
             </div>
             <div className={GROUPCREATE.row}>
