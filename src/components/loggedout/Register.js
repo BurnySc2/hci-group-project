@@ -1,6 +1,11 @@
 import React, { useState } from "react"
 
 import { BUTTONS, LOGINCLASSES } from "../../css/classes"
+import {
+    databaseDefaultUserData,
+    databaseNames,
+    fetchFunctions,
+} from "../../constants/constants"
 
 export default function Register(props) {
     let [username, setUsername] = useState("")
@@ -9,21 +14,73 @@ export default function Register(props) {
     let [passwordRepeat, setPasswordRepeat] = useState("")
     let [registerText, setRegisterText] = useState("")
 
-    let registerButton = () => {
-        let text = ""
-        if (email !== "") {
-            text = `Your account '${username}' has been created. An verification email to '${email}' has been sent! You may log in now.`
+    let registerButton = async () => {
+        if (email === "") {
+            setRegisterText("You left the email field empty!")
+            return
+        } else if (username === "") {
+            setRegisterText("You left the username field empty!")
+            return
+        } else if (password === "") {
+            setRegisterText("You left the password field empty!")
+            return
+        } else if (password !== passwordRepeat) {
+            setRegisterText("Password does not match!")
+            return
         } else {
-            text =
-                "You left the email field empty! Account could not be created."
+            setRegisterText(
+                `Your account '${username}' has been created. An verification email to '${email}' has been sent! You may log in now.`
+            )
         }
 
-        setRegisterText(text)
+        let dbName = databaseNames.users
+        if (!(await fetchFunctions.checkIfCouchDbIsRunning())) {
+            setRegisterText(
+                "CouchDB is not running! Please install and run https://couchdb.apache.org/ "
+            )
+            return
+        }
 
-        console.assert(
-            password === passwordRepeat,
-            "Password and password repeat are not the same!"
-        )
+        // If not exists, create db
+        if (!(await fetchFunctions.checkIfDatabseExists(dbName))) {
+            await fetchFunctions.createDatabase(dbName)
+        }
+
+        // Check if username is taken
+        let data = await fetchFunctions.findDatabaseEntry(dbName, {
+            selector: {
+                username: username,
+            },
+        })
+        if (data.data) {
+            setRegisterText(`Username is already taken!`)
+            return
+        }
+
+        // Check if email is taken
+        data = await fetchFunctions.findDatabaseEntry(dbName, {
+            selector: {
+                email: email,
+            },
+        })
+        if (data.data) {
+            setRegisterText(`Email is already taken!`)
+            return
+        }
+
+        // Add username / email combination to database
+        await fetchFunctions.addDatabaseEntry(databaseNames.profiles, {
+            ...databaseDefaultUserData,
+            email: email,
+            username: username,
+        })
+        // Store password in .users database
+        await fetchFunctions.addDatabaseEntry(databaseNames.users, {
+            ...databaseDefaultUserData,
+            email: email,
+            username: username,
+            password: password,
+        })
 
         props.register(username, email, password)
     }

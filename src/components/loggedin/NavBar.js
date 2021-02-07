@@ -7,7 +7,7 @@ export default function Navbar(props) {
         <div
             className={NAVBAR.total}
             style={{
-                "background-image":
+                backgroundImage:
                     "linear-gradient(to left, rgba(0,0,150,1), rgba(0,0,150,0))",
             }}
         >

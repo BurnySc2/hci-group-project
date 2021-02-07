@@ -6,15 +6,15 @@ import Title from "./Title"
 import { CONTEXT } from "../constants/constants"
 
 export default function Website(props) {
-    // eslint-disable-next-line
-    let [show, setShow] = useState("home")
+    let [show, setShow] = useState("login")
     let { contextData, setContextData } = useContext(CONTEXT)
 
-    let login = (username, password) => {
-        // TODO verify username and password match
+    let login = (username, email, password) => {
         setContextData({
             ...contextData,
             username: username,
+            email: email,
+            password: password,
         })
         setShow("home")
     }

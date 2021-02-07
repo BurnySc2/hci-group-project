@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react"
 import { BUTTONS, STUDYPROJECTCREATE } from "../css/classes"
 import moment from "moment"
-import { WEEKDAYS } from "../constants/constants"
-import { exampleStudyProjects } from "../constants/exampledata"
+import {
+    databaseDefaultStudyProjectData,
+    databaseNames,
+    fetchFunctions,
+    WEEKDAYS,
+} from "../constants/constants"
 
 export default function StudyProjectCreate(props) {
     let [newStudyProjectData, setNewStudyProjectData] = useState({
@@ -18,22 +22,21 @@ export default function StudyProjectCreate(props) {
         deadline: Date.now(),
     })
 
-    let getStudyProjectData = (studyProjectId) => {
-        // TODO Get study project data from database via studyproject-id
-        if (!studyProjectId) {
-            return undefined
-        }
-        return exampleStudyProjects[0]
+    let getStudyProjectData = async (studyProjectId) => {
+        let response = await fetchFunctions.findDatabaseEntry(
+            databaseNames.studyProjects,
+            { selector: { _id: studyProjectId } }
+        )
+        console.log(response)
+        setNewStudyProjectData(response.data)
     }
 
     useEffect(() => {
-        let studyProjectData = getStudyProjectData(
-            props.homeStudyProjectDisplay
-        )
-        if (studyProjectData) {
-            setNewStudyProjectData(studyProjectData)
+        if (!props.studyProjectId) {
+            return
         }
-    }, [props.homeStudyProjectDisplay])
+        getStudyProjectData(props.studyProjectId)
+    }, [props.studyProjectId])
 
     let changeField = (key, value) => {
         setNewStudyProjectData({ ...newStudyProjectData, [key]: value })
@@ -58,17 +61,49 @@ export default function StudyProjectCreate(props) {
         return moment(timestamp).format("HH:mm")
     }
 
-    let applyStudyGroupChanges = (studyGroupId, newStudyProjectData) => {
+    let applyStudyGroupChanges = async (studyGroupId, newStudyProjectData) => {
         props.setHomeDisplay("mygroup")
         // TODO via database apply new study project information
+        // let response = await fetchFunctions()
     }
 
-    let createNewStudyProject = (groupId, studyProjectData) => {
+    let createNewStudyProject = async (groupId, studyProjectData) => {
         console.log(
             `Creating new study proejct for id ${props.groupid} with study project data`,
             studyProjectData
         )
-        props.setHomeDisplay("mygroup")
+
+        if (
+            !(await fetchFunctions.checkIfDatabseExists(
+                databaseNames.studyProjects
+            ))
+        ) {
+            await fetchFunctions.createDatabase(databaseNames.studyProjects)
+        }
+        let projectResponse = await fetchFunctions.addDatabaseEntry(
+            databaseNames.studyProjects,
+            {
+                ...databaseDefaultStudyProjectData,
+                ...newStudyProjectData,
+            }
+        )
+        console.log(projectResponse)
+        let groupResponse = await fetchFunctions.findDatabaseEntry(
+            databaseNames.groups,
+            { selector: { _id: props.groupid } }
+        )
+        console.log(groupResponse)
+        groupResponse.data.groupProjects.push(projectResponse.data.id)
+        await fetchFunctions.updateDatabaseEntry(
+            databaseNames.groups,
+            {
+                ...groupResponse.data,
+                groupProjects: groupResponse.data.groupProjects,
+            },
+            groupResponse.data._id,
+            groupResponse.data._rev
+        )
+
         // TODO via database, create a new study project
     }
 
@@ -176,6 +211,7 @@ export default function StudyProjectCreate(props) {
                             props.groupid,
                             newStudyProjectData
                         )
+                        props.setHomeDisplay("mygroup")
                     }}
                 >
                     Create New Study Project

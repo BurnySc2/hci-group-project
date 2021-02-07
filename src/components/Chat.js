@@ -85,14 +85,12 @@ export default function Chat(props) {
 
     return (
         <div className={"grid grid-cols-10 m-2 place-items-stretch"}>
-            <div></div>
-            <div class="col-start-3 col-span-6 ...">
+            <div className="col-start-3 col-span-6 ...">
                 <div className="flex flex-col bg-blue-200">
                     {messagesAsHtml}
                 </div>
                 {chatInput}
             </div>
-            <div></div>
         </div>
     )
 }

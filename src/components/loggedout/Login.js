@@ -1,17 +1,42 @@
 import React, { useState } from "react"
 
 import { BUTTONS, LOGINCLASSES } from "../../css/classes"
+import { databaseNames, fetchFunctions } from "../../constants/constants"
 
 export default function Login(props) {
     let [username, setUsername] = useState("")
     let [password, setPassword] = useState("")
     let [loginText, setLoginText] = useState("")
 
-    let loginButton = () => {
-        setLoginText(
-            `You have clicked the 'login' button! No functionality is implemented yet :(`
-        )
-        props.login(username, password)
+    let loginButton = async () => {
+        let dbName = databaseNames.users
+        if (!(await fetchFunctions.checkIfCouchDbIsRunning())) {
+            setLoginText(
+                "CouchDB is not running! Please install and run https://couchdb.apache.org/ "
+            )
+            return
+        }
+        if (!(await fetchFunctions.checkIfDatabseExists(dbName))) {
+            await fetchFunctions.createDatabase(dbName)
+        }
+        let data = await fetchFunctions.findDatabaseEntry(dbName, {
+            selector: {
+                username: username,
+            },
+        })
+
+        if (!data.data) {
+            setLoginText("Username does not exist!")
+            return
+        }
+        if (data.data.password !== password) {
+            setLoginText("Password is incorrect!")
+            return
+        }
+
+        let email = data.data.email
+
+        props.login(username, email, password)
     }
 
     return (

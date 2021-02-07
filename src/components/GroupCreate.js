@@ -1,9 +1,19 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { BUTTONS, GROUPCREATE, INPUTFIELD } from "../css/classes"
 import { exampleJoinedGroups } from "../constants/exampledata"
+import {
+    CONTEXT,
+    databaseDefaultGroupData,
+    databaseNames,
+    fetchFunctions,
+} from "../constants/constants"
+import moment from "moment"
 
 export default function GroupCreate(props) {
+    // eslint-disable-next-line no-unused-vars
+    let { contextData, setContextData } = useContext(CONTEXT)
     let [newGroupData, setNewGroupData] = useState({
+        icon: "",
         title: "",
         fieldofstudy: "Informatik",
         modules: "",
@@ -31,9 +41,39 @@ export default function GroupCreate(props) {
         // TODO via database apply new group information
     }
 
-    let createNewGroup = (groupData) => {
-        props.setHomeDisplay(undefined)
-        // TODO via database, create a new group
+    let createNewGroup = async (groupData) => {
+        console.log("creating new group")
+        let dbName = databaseNames.groups
+        if (!(await fetchFunctions.checkIfDatabseExists(dbName))) {
+            await fetchFunctions.createDatabase(dbName)
+        }
+        // Create group
+        let resultGroup = await fetchFunctions.addDatabaseEntry(dbName, {
+            ...databaseDefaultGroupData,
+            ...groupData,
+            members: [contextData.username],
+            memberCount: "1",
+            createdBy: contextData.username,
+            createdDate: moment().valueOf(),
+        })
+        // Modify user: update list of groups
+        let resultUser = await fetchFunctions.findDatabaseEntry(
+            databaseNames.users,
+            { selector: { username: contextData.username } }
+        )
+        let groups = resultUser.data.groups
+        groups.push(resultGroup.data.id)
+        await fetchFunctions.updateDatabaseEntry(
+            databaseNames.users,
+            {
+                ...resultUser.data,
+                groups: groups,
+            },
+            resultUser.data._id,
+            resultUser.data._rev
+        )
+
+        await props.createNewGroup(groupData)
     }
 
     let cancelButton = () => {
@@ -56,6 +96,12 @@ export default function GroupCreate(props) {
             <div className={GROUPCREATE.titleBar}>Create New Study Group</div>
             <div className={GROUPCREATE.grid}>
                 {/* <div className={GROUPCREATE.col}> */}
+                <div className={GROUPCREATE.label}>Group Icon</div>
+                <input
+                    className={INPUTFIELD.groupCreate}
+                    value={newGroupData.icon}
+                    onChange={(e) => changeField("icon", e.target.value)}
+                />
                 <div className={GROUPCREATE.label}>Group Name</div>
                 <input
                     className={INPUTFIELD.groupCreate}
@@ -113,6 +159,7 @@ export default function GroupCreate(props) {
                     className={`${BUTTONS.acceptButton} ${createGroupButtonVisibility}`}
                     onClick={(e) => {
                         createNewGroup(newGroupData)
+                        props.setHomeDisplay(undefined)
                     }}
                 >
                     Create New Group

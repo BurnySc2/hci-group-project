@@ -88,9 +88,9 @@ In the cog menu the user can change his password, or remove his account.
 
 ## Database functionality with couchDB
 ### User database
-- [ ] When a user registers, add him to the database of users
-- [ ] When a user registers, check if the username and email are not taken
-- [ ] On log in, verify username and password are correct
+- [x] When a user registers, add him to the database of users
+- [x] When a user registers, check if the username and email are not taken
+- [x] On log in, verify username and password are correct
 - [ ] When editing a profile, update the information in the database
 - [ ] When removing the account, remove it from the database
 ## Group Search Screen
@@ -98,8 +98,8 @@ In the cog menu the user can change his password, or remove his account.
 - [ ] Recognize groups that already received a joinrequest (and mark them)
 ### Study group database
 - [ ] When a user is logged in and on `Chat` screen, grab information about his study groups
-- [ ] When creating a new study group, add the group to the database
-- [ ] When creating a new study project, add the project to the group
+- [x] When creating a new study group, add the group to the database
+- [x] When creating a new study project, add the project to the group
 - [ ] When browsing the `Kalender`, grab all the study projects and display them
 - [ ] When editing a study group, update the information in the database
 - [ ] When a user is requesting to join a group, add the request to the list of requests of the group
@@ -161,4 +161,4 @@ under 'configuration' and modify there: enable CORS and under 'origin domains' a
 # Prettier (autoformatting)
 Format all files with:
 
-`npx prettier --write "**/*.js"`
+`npx prettier --write "src/**/*.js"`
